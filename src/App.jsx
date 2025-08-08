@@ -1,12 +1,34 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  About,
+  Contact,
+  Experience,
+  Feedbacks,
+  Navbar,
+  StarsCanvas,
+  Tech,
+  Works,
+} from "./components";
 
 const App = () => {
   return (
-    <div className="font-primary h-screen bg-hero-pattern">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur in quo
-      sint excepturi similique quia omnis quam? Consectetur temporibus magnam
-      maxime quisquam libero sunt sapiente, fugit culpa! Quae, cumque dolores.
-    </div>
+    <BrowserRouter>
+      <div className="relative z-0 bg-primary">
+        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+          <Navbar />
+        </div>
+        <About />
+        <Experience />
+        <Tech />
+        <Works />
+        <Feedbacks />
+        <div className="relative z-0">
+          <Contact />
+          <StarsCanvas />
+        </div>
+      </div>
+    </BrowserRouter>
   );
 };
 
