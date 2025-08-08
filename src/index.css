@@ -15,7 +15,11 @@
     --breakpoint-xs: 450px;
 
     --background-image-hero-pattern: url('/src/assets/herobg.png');
+
+    --font-poppins: "Poppins",
+        sans-serif;
 }
+
 * {
     margin: 0;
     padding: 0;
