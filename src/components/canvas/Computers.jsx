@@ -7,7 +7,7 @@ import CanvasLoder from "../Loader";
 // import { canvas } from "framer-motion/client";
 
 const Computers = () => {
-  const computer = useGLTF("../../public/desktop_pc/scene.gltf");
+  const computer = useGLTF("/desktop_pc/scene.gltf");
   return (
     <mesh>
       <hemisphereLight intensity={0.15} groundColor="black" />
@@ -46,4 +46,4 @@ const ComputersCanvas = () => {
   );
 };
 
-export default Computers;
+export default ComputersCanvas;
