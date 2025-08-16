@@ -2,11 +2,8 @@ import React, { Suspense } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
-import CanvasLoader from "../Loader";
+import CanvesLoader from "../CanvesLoader";
 import Desk from "../../../public/Desk";
-import { canvas } from "framer-motion/client";
-
-// const computer = useGLTF("/desktop_pc/scene.gltf");
 
 const ComputersCanvas = () => {
   return (
@@ -18,17 +15,9 @@ const ComputersCanvas = () => {
     >
       <ambientLight />
       <pointLight position={[0, 5, 2]} intensity={1.5} castShadow />
-      <Suspense fallback={null}>
-        <OrbitControls
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          // minPolarAngle={Math.PI / 2}
-        />
-        <Desk
-          scale={0.8}
-          position={[2, -1.5, 0]}
-          // rotation={[0, Math.PI / 4, 0]}
-        />
+      <Suspense fallback={<CanvesLoader />}>
+        <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} />
+        <Desk scale={0.9} position={[2, 0, 0]} />
       </Suspense>
     </Canvas>
   );
