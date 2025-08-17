@@ -36,8 +36,8 @@
     /* stroke outline visible */
     opacity: 0;
 
-    /* each span runs 12s, offset 4s each */
-    animation: display-cycle 12s ease-in-out infinite;
+    /* each span runs 16s, offset 4s each */
+    animation: display-cycle 16s ease-in-out infinite;
     animation-delay: calc(4s * var(--i));
 }
 
@@ -47,12 +47,12 @@
     }
 
     5%,
-    35% {
+    25% {
         opacity: 1;
     }
 
     /* visible during typing/hold */
-    36%,
+    26%,
     100% {
         opacity: 0;
     }
@@ -71,8 +71,8 @@
     white-space: nowrap;
     overflow: hidden;
 
-    /* typing effect synced with 12s cycle */
-    animation: typing-cycle 12s steps(30) infinite;
+    /* typing effect synced with 16s cycle */
+    animation: typing-cycle 16s steps(30) infinite;
     animation-delay: calc(4s * var(--i));
 }
 
@@ -83,20 +83,20 @@
         width: 0;
     }
 
-    /* wait a bit */
-    15%,
-    30% {
+    /* wait */
+    10%,
+    20% {
         width: 100%;
     }
 
     /* typing */
-    31%,
-    35% {
+    21%,
+    25% {
         width: 100%;
     }
 
     /* hold full */
-    36%,
+    26%,
     100% {
         width: 0;
     }

@@ -20,9 +20,9 @@ const Hero = () => {
 
         <div className="flex-1">
           <h1 className="text-white font-black text-xl sm:text-xl md:text-3xl lg:text-5xl">
-            Md Sifatul Islam{" "}
+            Md Sifatul Islam
           </h1>
-          <h2 className="relative text-gray-200 font-black text-2xl sm:text-2xl md:text-2xl lg:text-3xl mt-10">
+          <h2 className="relative text-gray-200 font-bold text-2xl sm:text-xl md:text-2xl lg:text-[28px] mt-10 w-full">
             I'm a &nbsp;
             <span
               style={{ "--i": 0 }}
@@ -40,6 +40,13 @@ const Hero = () => {
             </span>
             <span
               style={{ "--i": 2 }}
+              data-text="MERN-Stack Devloper"
+              className="hore_heading"
+            >
+              MERN-Stack Devloper
+            </span>
+            <span
+              style={{ "--i": 3 }}
               data-text="Programmer"
               className="hore_heading"
             >
@@ -58,15 +65,25 @@ const Hero = () => {
           <div className="mt-8">
             <a
               href="https://github.com/ps-sifat"
-              target="blank"
-              className="animated-button w-[160px]"
+              target="_blank"
+              className="group relative animated-button w-[160px] flex items-center justify-center"
             >
-              <img className="arr-2 w-6 h-6 absolute z-3" src={github} alt="" />
-              <span className="text">My work</span>
+              <img
+                className="arr-2 w-6 h-6 absolute z-3 left-3"
+                src={github}
+                alt="github"
+              />
+
+              {/* Default text */}
+              <span className="text block group-hover:hidden">My work</span>
+
+              {/* Hover text */}
+              <span className="text hidden group-hover:block">Github</span>
+
               <span className="circle" />
               <svg
                 viewBox="0 0 24 24"
-                className="arr-1"
+                className="arr-1 absolute right-3"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
