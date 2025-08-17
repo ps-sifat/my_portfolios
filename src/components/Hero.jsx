@@ -5,9 +5,9 @@ import { github } from "../assets";
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen mx-auto">
+    <section className="relative w-full h-screen container">
       <div
-        className={`sm:py-16 py-6 absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-5`}
+        className={`sm:py-16 py-6 absolute inset-0 top-[120px]  flex flex-col md:flex-row items-start gap-5`}
       >
         {/* left side text */}
         <div className="hidden md:flex flex-col justify-center items-center mt-[95px]">
@@ -22,7 +22,7 @@ const Hero = () => {
           <h1 className="text-white font-black text-xl sm:text-xl md:text-3xl lg:text-5xl">
             Md Sifatul Islam
           </h1>
-          <h2 className="relative text-gray-200 font-bold text-2xl sm:text-xl md:text-2xl lg:text-[28px] mt-10 w-full">
+          <h2 className="relative text-gray-200 font-bold text-2xl sm:text-xl md:text-2xl lg:text-[30px] mt-10 w-full">
             I'm a &nbsp;
             <span
               style={{ "--i": 0 }}
@@ -101,7 +101,7 @@ const Hero = () => {
       {/* scroll icon */}
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
-          <div className="w-[35px] h-[64px] rounded-3xl border-3 border-secondary flex justify-center items-start p-2">
+          <div className="w-[35px] h-[60px] rounded-3xl border-3 border-secondary flex justify-center items-start p-2">
             <motion.div
               animate={{ y: [0, 24, 0] }}
               transition={{

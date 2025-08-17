@@ -31,7 +31,7 @@ const Navbar = () => {
             : "py-4 md:py-5 "
         }`}
       >
-        <div className="w-full flex justify-between items-center max-w-7xl mx-auto !py-5  ">
+        <div className="w-full flex justify-between items-center container !py-5  ">
           <Link
             to="/"
             className="flex items-center gap-2"
