@@ -1,24 +1,20 @@
 import React from "react";
-import { ComputersCanvas } from "./canvas";
+import ComputersCanvas from "../components/canvas/Computers";
 import { motion } from "framer-motion";
 import { github } from "../assets";
 
 const Hero = () => {
   return (
     <section className="relative w-full h-screen container">
-      <div
-        className={`sm:py-16 py-6 absolute inset-0 top-[120px]  flex flex-col md:flex-row items-start gap-5`}
-      >
-        {/* left side text */}
+      <div className="sm:py-16 py-6 absolute inset-0 top-[120px] flex flex-col md:flex-row items-start gap-5">
+        {/* left side vertical line */}
         <div className="hidden md:flex flex-col justify-center items-center mt-[95px]">
-          {/* Circle */}
           <div className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full bg-[#915eff]" />
-
-          {/* Line below circle */}
           <div className="w-1 h-20 sm:h-32 md:h-48 lg:h-64 violet-gradient" />
         </div>
 
-        <div className="flex-1">
+        {/* left text */}
+        <div className="flex-1 px-4">
           <h1 className="text-white font-black text-xl sm:text-xl md:text-3xl lg:text-5xl">
             Md Sifatul Islam
           </h1>
@@ -26,24 +22,24 @@ const Hero = () => {
             I'm a &nbsp;
             <span
               style={{ "--i": 0 }}
-              data-text="Front-end Devloper"
+              data-text="Front-end Developer"
               className="hore_heading"
             >
-              Front-end Devloper
+              Front-end Developer
             </span>
             <span
               style={{ "--i": 1 }}
-              data-text="Back-end Devloper"
+              data-text="Back-end Developer"
               className="hore_heading"
             >
-              Back-end Devloper
+              Back-end Developer
             </span>
             <span
               style={{ "--i": 2 }}
-              data-text="MERN-Stack Devloper"
+              data-text="MERN-Stack Developer"
               className="hore_heading"
             >
-              MERN-Stack Devloper
+              MERN-Stack Developer
             </span>
             <span
               style={{ "--i": 3 }}
@@ -73,13 +69,8 @@ const Hero = () => {
                 src={github}
                 alt="github"
               />
-
-              {/* Default text */}
               <span className="text block group-hover:hidden">My work</span>
-
-              {/* Hover text */}
               <span className="text hidden group-hover:block">Github</span>
-
               <span className="circle" />
               <svg
                 viewBox="0 0 24 24"
@@ -92,14 +83,14 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* right side 3D Model */}
-        <div className="flex-2 w-[700px] h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+        {/* right 3D Model */}
+        <div className="flex-2 w-full md:w-[700px] h-[250px] sm:h-[300px] md:h-[500px] lg:h-[600px] ">
           <ComputersCanvas />
         </div>
       </div>
 
       {/* scroll icon */}
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
+      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center sm:flex ">
         <a href="#about">
           <div className="w-[35px] h-[60px] rounded-3xl border-3 border-secondary flex justify-center items-start p-2">
             <motion.div
