@@ -54,10 +54,12 @@ const About = () => {
           Let's work together to bring your ideas to life!
         </motion.p>
 
-        <div className="mt-20 flex flex-wrap gap-10 w-full">
-          {services.map((service, index) => (
-            <ServiceCard key={service.title} index={index} {...service} />
-          ))}
+        <div className="mt-20 w-full">
+          <div className="w-full flex flex-wrap gap-[45px] justify-center">
+            {services.map((service, index) => (
+              <ServiceCard key={service.title} index={index} {...service} />
+            ))}
+          </div>
         </div>
       </div>
     </>

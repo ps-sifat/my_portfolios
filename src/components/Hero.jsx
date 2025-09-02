@@ -18,7 +18,7 @@ const Hero = () => {
           <h1 className="text-white font-black text-xl sm:text-xl md:text-3xl lg:text-5xl">
             Md Sifatul Islam
           </h1>
-          <h2 className="relative text-gray-200 font-bold text-2xl sm:text-xl md:text-2xl lg:text-[30px] mt-10 w-full">
+          <h2 className="relative text-gray-200 font-bold text-2xl sm:text-xl md:text-2xl lg:text-[28px] mt-10 w-full">
             I'm a &nbsp;
             <span
               style={{ "--i": 0 }}
