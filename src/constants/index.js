@@ -31,8 +31,20 @@ export const navLinks = [
     title: "About",
   },
   {
-    id: "work",
-    title: "Work",
+    id: "experience",
+    title: "Experience",
+  },
+  {
+    id: "skills",
+    title: "Skills",
+  },
+  {
+    id: "projects",
+    title: "Projects",
+  },
+  {
+    id: "education",
+    title: "Education",
   },
   {
     id: "contact",
@@ -217,7 +229,8 @@ const projects = [
       },
     ],
     image: carrent,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/ps-sifat/car-rent",
+    live_link: "https://car-rent-demo.vercel.app",
   },
   {
     name: "Job IT",
@@ -238,7 +251,8 @@ const projects = [
       },
     ],
     image: jobit,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/ps-sifat/job-it",
+    live_link: "https://job-it-demo.vercel.app",
   },
   {
     name: "Trip Guide",
@@ -259,7 +273,8 @@ const projects = [
       },
     ],
     image: tripguide,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/ps-sifat/trip-guide",
+    live_link: "https://trip-guide-demo.vercel.app",
   },
 ];
 

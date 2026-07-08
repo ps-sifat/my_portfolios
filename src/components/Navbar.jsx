@@ -25,13 +25,13 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`w-full flex items-center justify-center  fixed bg-transparent top-0 left-0  z-20  sm:px-16 px-6${
+        className={`w-full flex items-center justify-center fixed bg-transparent top-0 left-0 z-20 sm:px-16 px-6 transition-all duration-300 ${
           isScrolled
-            ? "py-3 md:py-3 !bg-primary shadow-md backdrop-blur-lg  "
-            : "py-4 md:py-5 "
+            ? "py-2.5 md:py-3 glass-navbar shadow-lg"
+            : "py-4 md:py-5"
         }`}
       >
-        <div className="w-full flex justify-between items-center container !py-5  ">
+        <div className="w-full flex justify-between items-center container !py-4">
           <Link
             to="/"
             className="flex items-center gap-2"
@@ -41,17 +41,17 @@ const Navbar = () => {
             }}
           >
             <img className="w-6 h-9 object-contain" src={logo} alt="logo" />
-            <p className="text-white text-[20px] font-bold font-poppins">
+            <p className="text-white text-[20px] font-bold font-poppins tracking-wider">
               Sifat
             </p>
           </Link>
-          <ul className="list-none hidden sm:flex flex-row gap-10">
+          <ul className="list-none hidden sm:flex flex-row gap-8">
             {navLinks.map((link) => (
               <li
                 key={link.id}
                 className={`${
-                  active === link.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] cursor-pointer font-medium `}
+                  active === link.title ? "text-white text-shadow-glow" : "text-secondary"
+                } hover:text-white text-[16px] cursor-pointer font-medium tracking-wide transition-colors duration-200`}
                 onClick={() => setActive(link.title)}
               >
                 <a href={`#${link.id}`}>{link.title}</a>
@@ -63,21 +63,21 @@ const Navbar = () => {
             <img
               src={toggle ? close : menu}
               alt="menu"
-              className="w-[28px] h-[28px] object-contain cursor-pointer "
+              className="w-[28px] h-[28px] object-contain cursor-pointer"
               onClick={() => setToggle(!toggle)}
             />
             <div
-              className={`p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[130px] min-h-[140px] z-10 rounded-xl  ${
-                !toggle ? "hidden" : "flex justify-center py-1.5 items-center"
+              className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-2xl border border-white/10 ${
+                !toggle ? "hidden" : "flex justify-center py-4 items-center animate-fade-in"
               }`}
             >
-              <ul className="list-none flex justify-end items-start flex-col gap-4  ">
+              <ul className="list-none flex justify-end items-start flex-col gap-4">
                 {navLinks.map((link) => (
                   <li
                     key={link.id}
                     className={`${
                       active === link.title ? "text-white" : "text-secondary"
-                    } font-poppins font-medium cursor-pointer text-[16px]`}
+                    } font-poppins font-medium cursor-pointer text-[15px] transition-colors`}
                     onClick={() => {
                       setToggle(!toggle);
                       setActive(link.title);

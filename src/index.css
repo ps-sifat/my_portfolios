@@ -13,12 +13,39 @@
 
     --shadow-card: 0px 35px 120px -15px #211e35;
 
-    --breakpoint-xs: 450px;
-
     --background-image-hero-pattern: url('/src/assets/herobg.png');
 
     --font-poppins: "Poppins",
         sans-serif;
+
+    /* Custom Responsive Breakpoints */
+    --breakpoint-xs: 450px;
+    --breakpoint-sm: 481px;
+    --breakpoint-md: 769px;
+    --breakpoint-lg: 1025px;
+    --breakpoint-xl: 1441px;
+}
+
+@utility glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(3, 7, 18, 0.5);
+}
+
+@utility glass-navbar {
+    background: rgba(5, 8, 22, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@utility glass-input {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 * {
