@@ -53,6 +53,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 @import "tailwindcss";
 
 @utility container{
