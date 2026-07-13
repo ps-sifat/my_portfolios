@@ -45,16 +45,22 @@ const Navbar = () => {
               Sifat.dev
             </p>
           </Link>
-          <ul className="list-none hidden sm:flex flex-row gap-8">
+          <ul className="list-none hidden sm:flex flex-row gap-2 items-center">
             {navLinks.map((link) => (
               <li
                 key={link.id}
-                className={`${
-                  active === link.title ? "text-white text-shadow-glow" : "text-secondary"
-                } hover:text-white text-[16px] cursor-pointer font-medium tracking-wide transition-colors duration-200`}
+                className={`relative px-4 py-1.5 rounded-full cursor-pointer text-[15px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${
+                  active === link.title ? "text-white bg-[#915eff]" : "text-secondary hover:text-white"
+                }`}
                 onClick={() => setActive(link.title)}
               >
-                <a href={`#${link.id}`}>{link.title}</a>
+                <a href={`#${link.id}`} className="relative z-10 block w-full h-full text-center">
+                  {link.title}
+                </a>
+                {/* Expanding background circle on hover */}
+                {active !== link.title && (
+                  <span className="absolute inset-0 w-0 h-0 m-auto rounded-full bg-[#915eff] group-hover:w-32 group-hover:h-32 transition-all duration-500 ease-out z-0 opacity-0 group-hover:opacity-100" />
+                )}
               </li>
             ))}
           </ul>
@@ -67,23 +73,29 @@ const Navbar = () => {
               onClick={() => setToggle(!toggle)}
             />
             <div
-              className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-2xl border border-white/10 ${
+              className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl border border-white/10 ${
                 !toggle ? "hidden" : "flex justify-center py-4 items-center animate-fade-in"
               }`}
             >
-              <ul className="list-none flex justify-end items-start flex-col gap-4">
+              <ul className="list-none flex justify-end items-stretch flex-col gap-3 w-full">
                 {navLinks.map((link) => (
                   <li
                     key={link.id}
-                    className={`${
-                      active === link.title ? "text-white" : "text-secondary"
-                    } font-poppins font-medium cursor-pointer text-[15px] transition-colors`}
+                    className={`relative px-4 py-2 rounded-xl cursor-pointer text-[14px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${
+                      active === link.title ? "text-white bg-[#915eff]" : "text-secondary hover:text-white"
+                    }`}
                     onClick={() => {
                       setToggle(!toggle);
                       setActive(link.title);
                     }}
                   >
-                    <a href={`#${link.id}`}>{link.title}</a>
+                    <a href={`#${link.id}`} className="relative z-10 block w-full h-full text-center">
+                      {link.title}
+                    </a>
+                    {/* Expanding background circle on hover */}
+                    {active !== link.title && (
+                      <span className="absolute inset-0 w-0 h-0 m-auto rounded-full bg-[#915eff] group-hover:w-48 group-hover:h-48 transition-all duration-500 ease-out z-0 opacity-0 group-hover:opacity-100" />
+                    )}
                   </li>
                 ))}
               </ul>
