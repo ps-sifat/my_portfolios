@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import CanvesLoader from "../CanvesLoader";
-import Desk from "../../../public/Desk";
+import Desk from "./Desk";
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -25,7 +25,10 @@ const ComputersCanvas = () => {
     <Canvas
       frameloop="demand"
       shadows
-      camera={{ position: [30, 4, 5], fov: 25 }}
+      camera={{ 
+        position: isMobile ? [20, 2, 5] : [30, 4, 5], 
+        fov: isMobile ? 32 : 25 
+      }}
       gl={{ preserveDrawingBuffer: true }}
     >
       <ambientLight />
@@ -35,8 +38,8 @@ const ComputersCanvas = () => {
 
         {/* Switch Desk model config based on device */}
         <Desk
-          scale={isMobile ? 0.8 : 0.9} // bigger on mobile than before
-          position={isMobile ? [0, -0.9, 0] : [2, 0, 0]} // lift it slightly for balance
+          scale={isMobile ? 1.3 : 0.9} // Significantly larger scale on mobile so it is visible
+          position={isMobile ? [0, -1.2, 0] : [2, 0, 0]} // Positioned lower for mobile balance
         />
       </Suspense>
     </Canvas>
