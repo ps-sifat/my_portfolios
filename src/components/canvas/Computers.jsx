@@ -8,8 +8,8 @@ const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Media query for mobile devices (max-width: 500px)
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    // Media query for mobile/tablet screens (max-width: 768px)
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
 
     // Set initial value
     setIsMobile(mediaQuery.matches);
@@ -20,6 +20,8 @@ const ComputersCanvas = () => {
 
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
+
+  if (isMobile) return null; // Do not load 3D assets or mount WebGL canvas on mobile/tablet to save memory/performance!
 
   return (
     <Canvas

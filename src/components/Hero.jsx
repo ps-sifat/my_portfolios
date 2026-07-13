@@ -137,8 +137,8 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right 3D Model */}
-        <div className="flex-2 w-full md:w-[700px] h-[300px] md:h-[500px] lg:h-[600px] relative">
+        {/* Right 3D Model - Hidden on Mobile/Tablet */}
+        <div className="hidden md:block flex-2 w-full md:w-[700px] h-[300px] md:h-[500px] lg:h-[600px] relative">
           <ComputersCanvas />
         </div>
       </div>
