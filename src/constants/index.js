@@ -157,122 +157,70 @@ const testimonials = [];
 // Real projects
 const projects = [
   {
-    name: "Hotel Booking System",
+    name: "Food Panda Landing Page",
     description:
-      "A full-featured hotel booking platform where users can browse rooms, check availability, make reservations, and manage bookings. Admins can manage rooms, pricing, and reservations through a dashboard.",
+      "While learning web design at \"Creative IT Institute\", the institute organized a web contest for us. There from our group we design \"Food Panda\" app landing page for web Contest. We are 2 people who make the whole web page.",
     tags: [
       {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "nodejs",
-        color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "express",
+        name: "html",
         color: "orange-text-gradient",
       },
-    ],
-    image: carrent,
-    source_code_link: "https://github.com/ps-sifat",
-    live_link: "https://github.com/ps-sifat",
-  },
-  {
-    name: "Library Management System",
-    description:
-      "A comprehensive library management application allowing users to search, borrow, and return books. Features admin panel for managing inventory, member records, and transaction history.",
-    tags: [
       {
-        name: "react",
+        name: "css",
         color: "blue-text-gradient",
       },
       {
-        name: "express",
+        name: "javascript",
         color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: jobit,
-    source_code_link: "https://github.com/ps-sifat",
-    live_link: "https://github.com/ps-sifat",
-  },
-  {
-    name: "Online Food Ordering System",
-    description:
-      "A full-stack food ordering platform featuring a restaurant menu, cart management, order tracking, and user authentication. Built with MERN stack for real-time order management.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "nodejs",
-        color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "blue-text-gradient",
       },
     ],
     image: tripguide,
-    source_code_link: "https://github.com/ps-sifat",
-    live_link: "https://github.com/ps-sifat",
+    source_code_link: "https://github.com/ps-sifat/Food-Panda-app-landing-page-for-Web-Contest-Creative-IT-Institute-.git",
+    live_link: "https://food-panda-app-landing-page-for-web.vercel.app/",
+  },
+  {
+    name: "Hotel Booking App",
+    description:
+      "Developed a responsive Hotel Booking web application as a practice clone to improve my React, Tailwind CSS, and responsive design skills. Focused on reusable components, clean UI, and modern frontend development practices.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "green-text-gradient",
+      },
+      {
+        name: "javascript",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: carrent,
+    source_code_link: "https://github.com/ps-sifat/Hotel-Booking-App.git",
+    live_link: "https://hotel-booking-app-jet-two.vercel.app/",
   },
   {
     name: "QR Code Generator",
     description:
-      "A responsive web app that generates customizable QR codes from any text or URL. Users can select colors, download the QR code as PNG, and preview results in real time.",
+      "A modern and stylish QR code generator built with React and Vite. This project allows users to generate QR codes from text or URLs, customize colors, adjust size, copy the content, and download the QR code as a PNG image.",
     tags: [
       {
-        name: "javascript",
-        color: "blue-text-gradient",
-      },
-      {
         name: "react",
-        color: "green-text-gradient",
+        color: "blue-text-gradient",
       },
       {
         name: "css",
         color: "pink-text-gradient",
       },
-    ],
-    image: carrent,
-    source_code_link: "https://github.com/ps-sifat",
-    live_link: "https://github.com/ps-sifat",
-  },
-  {
-    name: "AI & Hackathon Projects",
-    description:
-      "A collection of AI-powered micro-projects and hackathon solutions. Includes an AI-assisted FinTech prototype built during the SUST CSE Carnival 2026 hackathon with team ASOFT.",
-    tags: [
       {
-        name: "ai",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "react",
+        name: "javascript",
         color: "green-text-gradient",
-      },
-      {
-        name: "nodejs",
-        color: "pink-text-gradient",
       },
     ],
     image: jobit,
-    source_code_link: "https://github.com/ps-sifat",
-    live_link: "https://github.com/ps-sifat",
+    source_code_link: "https://github.com/ps-sifat/QR-code-generator.git",
+    live_link: "https://qr-code-generator-lilac-gamma.vercel.app/",
   },
 ];
 

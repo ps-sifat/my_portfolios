@@ -8,6 +8,7 @@ import {
   SiNodedotjs,
   SiExpress,
   SiJavascript,
+  SiHtml5,
 } from "react-icons/si";
 import { styles } from "../style";
 import { projects } from "../constants";
@@ -23,6 +24,7 @@ const tagIconMap = {
   javascript: { icon: SiJavascript, color: "text-yellow-400" },
   css: { icon: FaCss3Alt, color: "text-blue-500" },
   ai: { icon: FaBrain, color: "text-purple-400" },
+  html: { icon: SiHtml5, color: "text-orange-500" },
 };
 
 const ProjectCard = ({
