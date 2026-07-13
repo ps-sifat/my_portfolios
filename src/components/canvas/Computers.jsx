@@ -23,7 +23,7 @@ const ComputersCanvas = () => {
 
   return (
     <Canvas
-      frameLoop="demand"
+      frameloop="demand"
       shadows
       camera={{ position: [30, 4, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
