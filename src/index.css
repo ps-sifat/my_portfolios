@@ -198,6 +198,8 @@ html {
             #f12711,
             #f5af19);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -212,6 +214,8 @@ html {
             #11998e,
             #38ef7d);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -226,6 +230,8 @@ html {
     background: linear-gradient(to top,
             #2f80ed,
             #56ccf2);
+    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -237,6 +243,9 @@ html {
     background: linear-gradient(to top,
             #ec008c,
             #fc6767);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* canvas- styles */

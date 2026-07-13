@@ -164,14 +164,17 @@ const projects = [
       {
         name: "html",
         color: "orange-text-gradient",
+        percent: 60,
       },
       {
         name: "css",
         color: "blue-text-gradient",
+        percent: 30,
       },
       {
         name: "javascript",
         color: "green-text-gradient",
+        percent: 10,
       },
     ],
     image: tripguide,
@@ -186,14 +189,17 @@ const projects = [
       {
         name: "react",
         color: "blue-text-gradient",
+        percent: 70,
       },
       {
         name: "tailwind",
         color: "green-text-gradient",
+        percent: 20,
       },
       {
         name: "javascript",
         color: "pink-text-gradient",
+        percent: 10,
       },
     ],
     image: carrent,
@@ -208,14 +214,17 @@ const projects = [
       {
         name: "react",
         color: "blue-text-gradient",
+        percent: 80,
       },
       {
         name: "css",
         color: "pink-text-gradient",
+        percent: 15,
       },
       {
         name: "javascript",
         color: "green-text-gradient",
+        percent: 5,
       },
     ],
     image: jobit,

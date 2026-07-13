@@ -110,35 +110,72 @@ const ProjectCard = ({
 
         {/* Tech Stack and Buttons container */}
         <div className="mt-6" style={{ transform: "translateZ(40px)" }}>
-          {/* Tech Stack Icons & Labels */}
-          <div className="flex flex-wrap gap-4 items-center mb-5 border-t border-white/5 pt-4">
-            <div className="flex gap-2">
+          {/* Tech Stack Icons & Percentage Bar */}
+          <div className="mb-5 border-t border-white/5 pt-4">
+            <div className="flex justify-between items-center mb-3">
+              <div className="flex gap-2">
+                {tags.map((tag) => {
+                  const config = tagIconMap[tag.name.toLowerCase()] || {
+                    icon: () => null,
+                    color: "text-gray-400",
+                  };
+                  const Icon = config.icon;
+                  return (
+                    <div
+                      key={tag.name}
+                      className={`text-base ${config.color} p-1.5 rounded-lg bg-black/35 border border-white/5 flex items-center justify-center`}
+                      title={`${tag.name} (${tag.percent}%)`}
+                    >
+                      <Icon />
+                    </div>
+                  );
+                })}
+              </div>
+              <span className="text-[11px] font-bold text-secondary uppercase tracking-wider">
+                Tech Usage
+              </span>
+            </div>
+
+            {/* GitHub-style stacked percentage bar */}
+            <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden flex gap-[2px] mb-3">
               {tags.map((tag) => {
-                const config = tagIconMap[tag.name.toLowerCase()] || {
-                  icon: () => null,
-                  color: "text-gray-400",
-                };
-                const Icon = config.icon;
+                let bgGradient = "bg-gray-400";
+                if (tag.color.includes("orange")) bgGradient = "bg-gradient-to-r from-orange-600 to-yellow-500";
+                else if (tag.color.includes("blue")) bgGradient = "bg-gradient-to-r from-blue-600 to-cyan-500";
+                else if (tag.color.includes("green")) bgGradient = "bg-gradient-to-r from-green-600 to-emerald-500";
+                else if (tag.color.includes("pink")) bgGradient = "bg-gradient-to-r from-pink-600 to-rose-500";
+                else if (tag.color.includes("purple")) bgGradient = "bg-gradient-to-r from-purple-600 to-indigo-500";
+
                 return (
                   <div
                     key={tag.name}
-                    className={`text-lg ${config.color} p-1.5 rounded-lg bg-black/35 border border-white/5 flex items-center justify-center hover:scale-115 transition-all`}
-                    title={tag.name}
-                  >
-                    <Icon />
-                  </div>
+                    style={{ width: `${tag.percent}%` }}
+                    className={`h-full ${bgGradient}`}
+                    title={`${tag.name}: ${tag.percent}%`}
+                  />
                 );
               })}
             </div>
-            <div className="flex flex-wrap gap-1.5">
-              {tags.map((tag) => (
-                <span
-                  key={tag.name}
-                  className={`text-[12px] font-medium ${tag.color}`}
-                >
-                  #{tag.name}
-                </span>
-              ))}
+
+            {/* Labels and values */}
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              {tags.map((tag) => {
+                let dotColor = "bg-gray-400";
+                if (tag.color.includes("orange")) dotColor = "bg-orange-500";
+                else if (tag.color.includes("blue")) dotColor = "bg-blue-400";
+                else if (tag.color.includes("green")) dotColor = "bg-green-400";
+                else if (tag.color.includes("pink")) dotColor = "bg-pink-400";
+                else if (tag.color.includes("purple")) dotColor = "bg-purple-400";
+
+                return (
+                  <div key={tag.name} className="flex items-center gap-1.5">
+                    <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
+                    <span className="text-[11px] font-semibold text-secondary uppercase tracking-wider">
+                      {tag.name} <span className="text-white ml-0.5">{tag.percent}%</span>
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
