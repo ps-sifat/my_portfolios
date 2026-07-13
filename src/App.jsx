@@ -5,6 +5,7 @@ import {
   Contact,
   Experience,
   Education,
+  Hackathons,
   Hero,
   Navbar,
   Tech,
@@ -44,6 +45,9 @@ const App = () => {
         </SectionWrapper>
         <SectionWrapper id="works">
           <Works />
+        </SectionWrapper>
+        <SectionWrapper id="hackathons">
+          <Hackathons />
         </SectionWrapper>
         <SectionWrapper id="education">
           <Education />

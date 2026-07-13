@@ -15,14 +15,10 @@ import {
   git,
   figma,
   docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
   carrent,
   jobit,
   tripguide,
-  threejs,
+  creative_it,
 } from "../assets";
 
 export const navLinks = [
@@ -32,7 +28,7 @@ export const navLinks = [
   },
   {
     id: "experience",
-    title: "Experience",
+    title: "Training",
   },
   {
     id: "skills",
@@ -41,6 +37,10 @@ export const navLinks = [
   {
     id: "projects",
     title: "Projects",
+  },
+  {
+    id: "hackathons",
+    title: "Hackathons",
   },
   {
     id: "education",
@@ -54,20 +54,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
+    title: "Full Stack Developer",
     icon: web,
   },
-
   {
-    title: "Backend Developer",
-    icon: backend,
-  },
-  {
-    title: "Mern-stack Devloper",
+    title: "MERN Stack Developer",
     icon: mobile,
   },
   {
-    title: "Programmer",
+    title: "Frontend Developer",
+    icon: backend,
+  },
+  {
+    title: "Problem Solver",
     icon: creator,
   },
 ];
@@ -86,16 +85,8 @@ const technologies = [
     icon: javascript,
   },
   {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
     name: "React JS",
     icon: reactjs,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
   },
   {
     name: "Tailwind CSS",
@@ -110,10 +101,6 @@ const technologies = [
     icon: mongodb,
   },
   {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
     name: "git",
     icon: git,
   },
@@ -121,150 +108,139 @@ const technologies = [
     name: "figma",
     icon: figma,
   },
-  {
-    name: "docker",
-    icon: docker,
-  },
 ];
 
+// Real training & certifications
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Professional MERN Stack Development",
+    company_name: "Creative IT Institute",
+    icon: creative_it,
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "Nov 2023 – Nov 2024",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Completed intensive full-stack training covering React.js, Node.js, Express.js, and MongoDB.",
+      "Built production-ready REST APIs with JWT authentication and secure CORS handling.",
+      "Developed multiple full-stack projects including hotel booking, library, and food ordering systems.",
+      "Learned deployment strategies using Vercel and modern CI/CD workflows.",
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
+    title: "Professional Web Design",
+    company_name: "Creative IT Institute",
+    icon: creative_it,
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "Aug 2023 – Nov 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Mastered modern UI/UX principles, typography, color theory, and responsive layouts.",
+      "Practiced advanced CSS techniques including Flexbox, Grid, and CSS animations.",
+      "Worked with design tools like Figma, Adobe Photoshop, and Adobe Illustrator.",
+      "Built pixel-perfect, mobile-first interfaces with exceptional cross-browser compatibility.",
     ],
   },
   {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
+    title: "Software Application Course",
+    company_name: "Postal Academy",
+    icon: creator,
     iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
+    date: "2022",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Covered fundamentals of software development lifecycle and application design.",
+      "Practiced MS Office Suite, database basics, and computer networking fundamentals.",
+      "Gained hands-on experience with software tools used in professional environments.",
     ],
   },
 ];
 
-const testimonials = [
-  {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-  },
-];
+const testimonials = [];
 
+// Real projects
 const projects = [
   {
-    name: "Car Rent",
+    name: "Hotel Booking System",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "A full-featured hotel booking platform where users can browse rooms, check availability, make reservations, and manage bookings. Admins can manage rooms, pricing, and reservations through a dashboard.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
+      },
+      {
+        name: "nodejs",
+        color: "green-text-gradient",
       },
       {
         name: "mongodb",
-        color: "green-text-gradient",
+        color: "pink-text-gradient",
       },
       {
-        name: "tailwind",
-        color: "pink-text-gradient",
+        name: "express",
+        color: "orange-text-gradient",
       },
     ],
     image: carrent,
-    source_code_link: "https://github.com/ps-sifat/car-rent",
-    live_link: "https://car-rent-demo.vercel.app",
+    source_code_link: "https://github.com/ps-sifat",
+    live_link: "https://github.com/ps-sifat",
   },
   {
-    name: "Job IT",
+    name: "Library Management System",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "A comprehensive library management application allowing users to search, borrow, and return books. Features admin panel for managing inventory, member records, and transaction history.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "express",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "mongodb",
         color: "pink-text-gradient",
       },
     ],
     image: jobit,
-    source_code_link: "https://github.com/ps-sifat/job-it",
-    live_link: "https://job-it-demo.vercel.app",
+    source_code_link: "https://github.com/ps-sifat",
+    live_link: "https://github.com/ps-sifat",
   },
   {
-    name: "Trip Guide",
+    name: "Online Food Ordering System",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "A full-stack food ordering platform featuring a restaurant menu, cart management, order tracking, and user authentication. Built with MERN stack for real-time order management.",
     tags: [
       {
-        name: "nextjs",
+        name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "nodejs",
+        color: "green-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "blue-text-gradient",
+      },
+    ],
+    image: tripguide,
+    source_code_link: "https://github.com/ps-sifat",
+    live_link: "https://github.com/ps-sifat",
+  },
+  {
+    name: "QR Code Generator",
+    description:
+      "A responsive web app that generates customizable QR codes from any text or URL. Users can select colors, download the QR code as PNG, and preview results in real time.",
+    tags: [
+      {
+        name: "javascript",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "react",
         color: "green-text-gradient",
       },
       {
@@ -272,10 +248,80 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
-    source_code_link: "https://github.com/ps-sifat/trip-guide",
-    live_link: "https://trip-guide-demo.vercel.app",
+    image: carrent,
+    source_code_link: "https://github.com/ps-sifat",
+    live_link: "https://github.com/ps-sifat",
+  },
+  {
+    name: "AI & Hackathon Projects",
+    description:
+      "A collection of AI-powered micro-projects and hackathon solutions. Includes an AI-assisted FinTech prototype built during the SUST CSE Carnival 2026 hackathon with team ASOFT.",
+    tags: [
+      {
+        name: "ai",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "react",
+        color: "green-text-gradient",
+      },
+      {
+        name: "nodejs",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: jobit,
+    source_code_link: "https://github.com/ps-sifat",
+    live_link: "https://github.com/ps-sifat",
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+// Hackathons & Activities
+const hackathons = [
+  {
+    event: "SUST CSE Carnival 2026 AI Hackathon",
+    team: "ASOFT",
+    role: "Participant",
+    date: "2026",
+    description:
+      "Participated in one of Bangladesh's largest university AI hackathons at SUST. Collaborated with team ASOFT to design and build an AI-assisted FinTech solution — featuring smart budget analytics and financial insights — under strict time constraints.",
+    tags: ["AI", "FinTech", "Hackathon", "Team Work"],
+    result: "Participated",
+  },
+];
+
+// Achievements
+const achievements = [
+  {
+    title: "President Scout Award",
+    year: "2018",
+    description: "Received the prestigious President Scout Award — the highest recognition in the Bangladesh Scout movement.",
+    icon: "🏆",
+  },
+  {
+    title: "MERN Stack Training Completed",
+    year: "2024",
+    description: "Successfully completed Professional MERN Stack Development at Creative IT Institute.",
+    icon: "🎓",
+  },
+  {
+    title: "Web Design Training Completed",
+    year: "2023",
+    description: "Completed Professional Web Design training with a focus on UI/UX and modern CSS.",
+    icon: "🎨",
+  },
+  {
+    title: "Built Multiple Full Stack Projects",
+    year: "2023–2026",
+    description: "Independently designed and developed 5+ full-stack web applications from concept to deployment.",
+    icon: "🚀",
+  },
+  {
+    title: "Hackathon Participant",
+    year: "2026",
+    description: "Competed in the SUST CSE Carnival 2026 AI Hackathon with team ASOFT.",
+    icon: "⚡",
+  },
+];
+
+export { services, technologies, experiences, testimonials, projects, hackathons, achievements };

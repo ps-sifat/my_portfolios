@@ -6,26 +6,26 @@ import { fadeIn, textVariant } from "../utils/motion";
 
 const professionalEducation = [
   {
-    title: "MERN Stack Web Development",
-    institution: "Creative It Institute",
-    year: "2023",
-    details: "Completed intensive training on HTML5, CSS3, Tailwind CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, REST API design, and deployment.",
+    title: "Professional MERN Stack Development",
+    institution: "Creative IT Institute",
+    year: "Nov 2023 – Nov 2024",
+    details: "Completed extensive full-stack training covering HTML5, CSS3, Tailwind CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, REST API development, and deployment.",
     icon: FaCertificate,
     color: "from-purple-500 to-blue-500",
   },
   {
-    title: "Frontend Engineering & UI/UX Design",
-    institution: "Self-paced / Interactive Labs",
-    year: "2022 - Present",
-    details: "Mastered responsive layouts, performance optimization, CSS 3D transforms, Three.js integrations, Framer Motion animations, and modern accessibility standards (WCAG).",
+    title: "Professional Web Design",
+    institution: "Creative IT Institute",
+    year: "Aug 2023 – Nov 2023",
+    details: "Learned core UI/UX concepts, responsive web design, interactive web elements, Bootstrap, Custom CSS, styling architectures, and Photoshop/Illustrator design layout conversions.",
     icon: FaCertificate,
     color: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Backend Development & Systems Knowledge",
-    institution: "Advanced Dev Seminars & Labs",
-    year: "2023 - 2024",
-    details: "Acquired depth in Server architecture, MongoDB indexing, secure JWT-based authentication flows, CORS policy handling, and RESTful API engineering.",
+    title: "Software Application Course",
+    institution: "Postal Academy",
+    year: "2022",
+    details: "Learned standard software application development methodologies, basic programming logic, systems concepts, and fundamental tools for professional workflow automation.",
     icon: FaCertificate,
     color: "from-pink-500 to-purple-500",
   },
@@ -34,21 +34,30 @@ const professionalEducation = [
 const academicEducation = [
   {
     degree: "B.Sc. in Computer Science & Engineering",
-    institution: "Port City International University",
-    year: "2021 - 2025",
-    grade: "CGPA: 3.82 / 4.00",
-    details: "Core focus on Algorithms, Data Structures, Database Management Systems, Software Engineering, Web Technologies, and Machine Learning concepts.",
+    institution: "University of Asia Pacific",
+    year: "2024 – Present",
+    grade: "Pursuing",
+    details: "Developing solid foundation in Algorithms, Data Structures, Database Systems, Software Engineering, and AI, applying core theoretical principles to modern technology challenges.",
     icon: FaGraduationCap,
     color: "from-violet-600 to-purple-800",
   },
   {
-    degree: "Higher Secondary Certificate (HSC)",
-    institution: "Chittagong Government College",
-    year: "2018 - 2020",
-    grade: "GPA: 5.00 / 5.00",
-    details: "Science Group. Concentrated on Mathematics, Physics, Chemistry, and basic Computer Studies.",
+    degree: "Diploma in Computer Technology",
+    institution: "Patuakhali Polytechnic Institute",
+    year: "2019 – 2023",
+    grade: "CGPA: 3.47 / 4.00",
+    details: "Covered hardware, operating systems, structural programming, computer networks, database systems, and web technologies in a rigorous four-year polytechnic diploma framework.",
     icon: FaGraduationCap,
     color: "from-blue-600 to-indigo-800",
+  },
+  {
+    degree: "SSC (Science)",
+    institution: "Govt. Swarupkathi Pilot Secondary School",
+    year: "2019",
+    grade: "CGPA: 4.33 / 5.00",
+    details: "Secondary School Certificate with a major in Science, studying Mathematics, Physics, Chemistry, and ICT.",
+    icon: FaGraduationCap,
+    color: "from-teal-600 to-emerald-800",
   },
 ];
 
@@ -99,7 +108,7 @@ const Education = () => {
   return (
     <section id="education" className={`${styles.padding} max-w-7xl mx-auto relative z-0`}>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>My Learning Journey</p>
+        <p className={styles.sectionSubText}>My Academic & Training History</p>
         <h2 className={styles.sectionHeadText}>Education.</h2>
       </motion.div>
 
@@ -111,7 +120,7 @@ const Education = () => {
             className="text-white font-bold text-[24px] mb-8 flex items-center gap-3"
           >
             <FaCertificate className="text-purple-500 filter drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
-            <span>Professional & Skill Training</span>
+            <span>Training & Certifications</span>
           </motion.h3>
 
           <div className="relative border-l border-white/5 pl-2 ml-4">

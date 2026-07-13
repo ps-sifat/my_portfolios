@@ -75,9 +75,9 @@ const Contact = () => {
         EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
-          to_name: "Md Sifatul Islam",
+          to_name: "Md. Sifatul Islam",
           from_email: form.email,
-          to_email: "sifatulislam.dev@gmail.com",
+          to_email: "mdsifatulislam2357@gmail.com",
           subject: form.subject,
           message: form.message,
         },
@@ -119,11 +119,11 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: FaEnvelope, text: "sifatulislam.dev@gmail.com", href: "mailto:sifatulislam.dev@gmail.com", color: "text-purple-400" },
-    { icon: FaLinkedin, text: "Md Sifatul Islam", href: "https://linkedin.com/in/md-sifatul-islam", color: "text-blue-400" },
+    { icon: FaEnvelope, text: "mdsifatulislam2357@gmail.com", href: "mailto:mdsifatulislam2357@gmail.com", color: "text-purple-400" },
+    { icon: FaLinkedin, text: "Md. Sifatul Islam", href: "https://linkedin.com/in/md-sifatul-islam", color: "text-blue-400" },
     { icon: FaGithub, text: "ps-sifat", href: "https://github.com/ps-sifat", color: "text-white" },
-    { icon: FaWhatsapp, text: "+880 1787-217983", href: "https://wa.me/8801787217983", color: "text-green-400" },
-    { icon: FaMapMarkerAlt, text: "Chittagong, Bangladesh", href: null, color: "text-pink-400" },
+    { icon: FaWhatsapp, text: "+880 1850-499490", href: "https://wa.me/8801850499490", color: "text-green-400" },
+    { icon: FaMapMarkerAlt, text: "Dhaka, Bangladesh", href: null, color: "text-pink-400" },
   ];
 
   return (
@@ -297,7 +297,7 @@ const Contact = () => {
               <FaLinkedin />
             </a>
             <a
-              href="https://wa.me/8801787217983"
+              href="https://wa.me/8801850499490"
               target="_blank"
               rel="noopener noreferrer"
               className="text-secondary hover:text-green-400 transition-colors text-lg"

@@ -1,15 +1,14 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaCss3Alt } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaCss3Alt, FaBrain } from "react-icons/fa";
 import { 
   SiReact, 
   SiMongodb, 
   SiTailwindcss, 
-  SiSass, 
-  SiNextdotjs, 
-  SiSupabase, 
+  SiNodedotjs,
+  SiExpress,
+  SiJavascript,
 } from "react-icons/si";
-import { TbApi } from "react-icons/tb";
 import { styles } from "../style";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
@@ -19,11 +18,11 @@ const tagIconMap = {
   react: { icon: SiReact, color: "text-blue-400" },
   mongodb: { icon: SiMongodb, color: "text-green-500" },
   tailwind: { icon: SiTailwindcss, color: "text-cyan-400" },
-  restapi: { icon: TbApi, color: "text-purple-400" },
-  scss: { icon: SiSass, color: "text-pink-400" },
-  nextjs: { icon: SiNextdotjs, color: "text-white" },
-  supabase: { icon: SiSupabase, color: "text-emerald-400" },
-  css: { icon: FaCss3Alt, color: "text-blue-500" }
+  nodejs: { icon: SiNodedotjs, color: "text-emerald-500" },
+  express: { icon: SiExpress, color: "text-gray-300" },
+  javascript: { icon: SiJavascript, color: "text-yellow-400" },
+  css: { icon: FaCss3Alt, color: "text-blue-500" },
+  ai: { icon: FaBrain, color: "text-purple-400" },
 };
 
 const ProjectCard = ({
@@ -88,11 +87,11 @@ const ProjectCard = ({
             </span>
           </div>
 
-          {/* Vercel Deployed Label */}
+          {/* Deployed Label */}
           <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-blue-500/30">
             <FaCheckCircle className="text-blue-400 text-[10px]" />
             <span className="text-[9px] font-medium text-gray-200 uppercase tracking-wide">
-              Deployed on Vercel
+              Deployed / Active
             </span>
           </div>
         </div>
@@ -182,11 +181,7 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          Following projects showcase my skills and experience through
-          real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos. It reflects my ability to
-          solve complex problems, work with different technologies, and manage
-          projects effectively.
+          The following projects demonstrate my expertise as a software engineer, highlighting both frontend UI work and backend systems integrations. Each repository contains clean code architectures with fully functional live deployments.
         </motion.p>
       </div>
 
@@ -199,4 +194,4 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default Works;

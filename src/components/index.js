@@ -13,6 +13,7 @@ import Works from "./Works";
 import Feedbacks from "./Feedbacks";
 import Contact from "./Contact";
 import Education from "./Education";
+import Hackathons from "./Hackathons";
 import SectionWrapper from "./SectionWrapper";
 import Loader from "./Loader";
 
@@ -26,6 +27,7 @@ export {
   Feedbacks,
   Contact,
   Education,
+  Hackathons,
   SectionWrapper,
   Loader,
   EarthCanvas,

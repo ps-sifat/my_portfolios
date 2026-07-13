@@ -42,7 +42,7 @@ const Navbar = () => {
           >
             <img className="w-6 h-9 object-contain" src={logo} alt="logo" />
             <p className="text-white text-[20px] font-bold font-poppins tracking-wider">
-              Sifat
+              Sifat.dev
             </p>
           </Link>
           <ul className="list-none hidden sm:flex flex-row gap-8">
