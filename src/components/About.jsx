@@ -5,22 +5,35 @@ import Tilt from "react-parallax-tilt";
 import { services } from "../constants/index";
 import { styles } from "../style";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import ElectricBorder from "./ElectricBorder";
 
 const ServiceCard = ({ index, title, icon }) => {
+  // Cycle through coordinate colors to make cards stand out individually
+  const borderColors = ["#915eff", "#00cea8", "#ff007f", "#38ef7d"];
+  const color = borderColors[index % borderColors.length];
+
   return (
     <Tilt className="xs:w-[250px] w-full">
       <motion.div
-        className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
-        variants={fadeIn("right", "spring", 0.5 * index, 0.7)}
+        variants={fadeIn("right", "spring", 0.3 * index, 0.75)}
+        className="w-full"
       >
-        <div
-          className="glass-card rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col hover:shadow-[0_0_30px_rgba(138,43,226,0.3)] hover:border-purple-500/35 transition-all duration-300"
+        <ElectricBorder
+          color={color}
+          speed={1.2}
+          chaos={0.08}
+          borderRadius={20}
+          className="w-full"
         >
-          <img src={icon} alt={title} className="w-16 h-16 object-contain" />
-          <h3 className="text-white text-[20px] font-bold text-center">
-            {title}
-          </h3>
-        </div>
+          <div
+            className="glass-card rounded-[20px] py-5 px-10 min-h-[280px] flex justify-evenly items-center flex-col hover:shadow-[0_0_20px_rgba(145,94,255,0.15)] transition-all duration-300 select-none"
+          >
+            <img src={icon} alt={title} className="w-16 h-16 object-contain" />
+            <h3 className="text-white text-[20px] font-bold text-center leading-snug">
+              {title}
+            </h3>
+          </div>
+        </ElectricBorder>
       </motion.div>
     </Tilt>
   );

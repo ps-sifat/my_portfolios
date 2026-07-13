@@ -16,6 +16,7 @@ import Education from "./Education";
 import Hackathons from "./Hackathons";
 import SectionWrapper from "./SectionWrapper";
 import Loader from "./Loader";
+import ElectricBorder from "./ElectricBorder";
 
 export {
   Hero,
@@ -34,4 +35,5 @@ export {
   BallCanvas,
   ComputersCanvas,
   StarsCanvas,
+  ElectricBorder,
 };
