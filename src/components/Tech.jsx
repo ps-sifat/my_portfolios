@@ -1,5 +1,4 @@
 import React from "react";
-import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 import {
   SiHtml5,
@@ -19,6 +18,7 @@ import { TbApi, TbBinaryTree, TbBrandVscode, TbPhoto, TbVector, TbAdjustments } 
 import { MdOutlineDesignServices } from "react-icons/md";
 import { styles } from "../style";
 import { fadeIn, textVariant } from "../utils/motion";
+import LogoLoop from "./LogoLoop";
 
 const skills = [
   {
@@ -70,32 +70,6 @@ const skills = [
   },
 ];
 
-const SkillCard = ({ name, Icon, color, glow, index }) => {
-  return (
-    <motion.div
-      variants={fadeIn("up", "spring", index * 0.08, 0.6)}
-      className="w-full"
-    >
-      <Tilt
-        glareEnable={true}
-        glareMaxOpacity={0.12}
-        glareColor="#ffffff"
-        glarePosition="all"
-        scale={1.05}
-        transitionSpeed={400}
-        className={`w-full glass-card p-5 rounded-2xl flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-purple-500/30 cursor-default ${glow} hover:shadow-lg`}
-      >
-        <div className={`text-4xl ${color} filter drop-shadow-[0_0_8px_currentColor] transition-transform duration-300`}>
-          <Icon />
-        </div>
-        <p className="text-white font-medium text-[13px] text-center tracking-wide leading-snug">
-          {name}
-        </p>
-      </Tilt>
-    </motion.div>
-  );
-};
-
 const Tech = () => {
   return (
     <section
@@ -108,38 +82,63 @@ const Tech = () => {
       </motion.div>
 
       <div className="mt-16 flex flex-col gap-14">
-        {skills.map((cat, catIdx) => (
-          <div key={cat.category} className="flex flex-col gap-5">
-            {/* Category header */}
-            <motion.div
-              variants={fadeIn("right", "tween", 0.1, 0.5)}
-              className="flex items-center gap-3"
-            >
-              <span className="w-1 h-6 rounded-full bg-gradient-to-b from-[#915eff] to-[#0ff]" />
-              <h3 className="text-white font-bold text-[20px] tracking-wide">
-                {cat.category}
-              </h3>
-              {cat.category === "Currently Learning" && (
-                <span className="ml-2 text-[11px] font-semibold text-[#915eff] bg-[#915eff]/10 border border-[#915eff]/20 px-2 py-0.5 rounded-full tracking-wider">
-                  IN PROGRESS
-                </span>
-              )}
-            </motion.div>
+        {skills.map((cat, catIdx) => {
+          // Map skills to nodes inside LogoLoop
+          const mappedLogos = cat.items.map((skill) => {
+            const Icon = skill.icon;
+            return {
+              node: (
+                <div className={`flex items-center gap-3 px-5 py-3 rounded-2xl glass-card border border-white/8 hover:border-purple-500/30 transition-all duration-300 select-none cursor-default group/item min-w-[170px] justify-center hover:shadow-[0_0_20px_rgba(145,94,255,0.15)]`}>
+                  <div className={`text-3xl ${skill.color} filter drop-shadow-[0_0_6px_currentColor] group-hover/item:scale-110 transition-transform duration-300`}>
+                    <Icon />
+                  </div>
+                  <span className="text-white font-medium text-[14px] tracking-wide">
+                    {skill.name}
+                  </span>
+                </div>
+              ),
+              title: skill.name,
+            };
+          });
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
-              {cat.items.map((skill, index) => (
-                <SkillCard
-                  key={skill.name}
-                  name={skill.name}
-                  Icon={skill.icon}
-                  color={skill.color}
-                  glow={skill.glow}
-                  index={index + catIdx * 4}
+          return (
+            <div key={cat.category} className="flex flex-col gap-5">
+              {/* Category header */}
+              <motion.div
+                variants={fadeIn("right", "tween", 0.1, 0.5)}
+                className="flex items-center gap-3"
+              >
+                <span className="w-1 h-6 rounded-full bg-gradient-to-b from-[#915eff] to-[#0ff]" />
+                <h3 className="text-white font-bold text-[20px] tracking-wide">
+                  {cat.category}
+                </h3>
+                {cat.category === "Currently Learning" && (
+                  <span className="ml-2 text-[11px] font-semibold text-[#915eff] bg-[#915eff]/10 border border-[#915eff]/20 px-2 py-0.5 rounded-full tracking-wider">
+                    IN PROGRESS
+                  </span>
+                )}
+              </motion.div>
+
+              {/* Logo Loop Carousel for each category */}
+              <motion.div
+                variants={fadeIn("up", "spring", catIdx * 0.1, 0.75)}
+                className="w-full relative"
+              >
+                <LogoLoop
+                  logos={mappedLogos}
+                  speed={40 + catIdx * 8} // Alternate speed to make the layout feel organic
+                  direction={catIdx % 2 === 0 ? "left" : "right"} // Alternate scroll direction!
+                  logoHeight={48}
+                  gap={24}
+                  fadeOut={true}
+                  fadeOutColor="#050816"
+                  scaleOnHover={true}
+                  pauseOnHover={true}
                 />
-              ))}
+              </motion.div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
