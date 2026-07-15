@@ -26,35 +26,115 @@
     --breakpoint-xl: 1441px;
 }
 
+/* ===== DARK MODE (default) ===== */
+:root,
+:root.dark {
+  --bg-primary: #050816;
+  --bg-secondary: #151030;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(145, 94, 255, 0.08);
+  --bg-navbar: rgba(5, 8, 22, 0.4);
+  --bg-input: rgba(255, 255, 255, 0.02);
+
+  --text-primary: #ffffff;
+  --text-secondary: #aaa6c3;
+  --text-muted: #6b6a7a;
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-navbar: rgba(255, 255, 255, 0.06);
+
+  --shadow-card: 0px 35px 120px -15px #211e35;
+  --glass-shadow: 0 8px 32px 0 rgba(3, 7, 18, 0.5);
+
+  --accent: #915eff;
+  --accent-hover: #7a4de0;
+  --accent-glow: rgba(145, 94, 255, 0.3);
+
+  --scroll-dot: #aaa6c3;
+  --loader-bg: #050816;
+}
+
+/* ===== LIGHT MODE ===== */
+:root.light {
+  --bg-primary: #f0f0f8;
+  --bg-secondary: #e4e2f5;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-card-hover: rgba(145, 94, 255, 0.1);
+  --bg-navbar: rgba(240, 240, 248, 0.75);
+  --bg-input: rgba(255, 255, 255, 0.8);
+
+  --text-primary: #0d0b1e;
+  --text-secondary: #4a4768;
+  --text-muted: #8b89a0;
+
+  --border-color: rgba(145, 94, 255, 0.2);
+  --border-navbar: rgba(145, 94, 255, 0.15);
+
+  --shadow-card: 0px 35px 120px -15px rgba(145, 94, 255, 0.15);
+  --glass-shadow: 0 8px 32px 0 rgba(145, 94, 255, 0.12);
+
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-glow: rgba(124, 58, 237, 0.3);
+
+  --scroll-dot: #4a4768;
+  --loader-bg: #f0f0f8;
+}
+
+
+
 @utility glass-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(3, 7, 18, 0.5);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--glass-shadow);
 }
 
 @utility glass-navbar {
-    background: rgba(5, 8, 22, 0.4);
+    background: var(--bg-navbar);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--border-navbar);
 }
 
 @utility glass-input {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-input);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-color);
 }
 
 * {
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+/* Theme-aware backgrounds */
+.bg-primary {
+    background-color: var(--bg-primary) !important;
+}
+
+.bg-secondary-theme {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Light mode: override text colors */
+:root.light .text-white {
+    color: var(--text-primary) !important;
+}
+
+:root.light .text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+:root.light .text-gray-200 {
+    color: var(--text-primary) !important;
 }
 
 @import "tailwindcss";
