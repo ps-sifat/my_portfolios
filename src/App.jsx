@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   About,
@@ -11,11 +11,23 @@ import {
   Tech,
   Works,
   SectionWrapper,
+  Loader,
 } from "./components";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setIsLoading(false);
+    }, 1100);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <BrowserRouter>
+      {isLoading ? <Loader /> : null}
       <div className="relative z-0 bg-primary">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
           <Navbar />
