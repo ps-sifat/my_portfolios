@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaTrophy, FaUsers, FaCalendarAlt, FaAward, FaLightbulb } from "react-icons/fa";
+import { FaTrophy, FaUsers, FaCalendarAlt, FaAward, FaLightbulb, FaExternalLinkAlt, FaClock } from "react-icons/fa";
 import { styles } from "../style";
 import { fadeIn, textVariant } from "../utils/motion";
 import { hackathons, achievements } from "../constants";
@@ -55,27 +55,51 @@ const HackathonCard = ({ event, team, role, date, description, tags, index }) =>
   );
 };
 
-const AchievementItem = ({ title, year, description, icon, index }) => {
+const AchievementItem = ({ title, year, description, icon, credentialUrl, index }) => {
   return (
     <motion.div
       variants={fadeIn("left", "spring", index * 0.2, 0.75)}
       className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/5 transition-all duration-300"
     >
-      <div className="text-2xl p-2 bg-white/5 rounded-lg border border-white/10 shrink-0">
-        {icon}
-      </div>
-      <div>
-        <div className="flex items-center gap-2 mb-0.5">
-          <h4 className="text-white font-bold text-[16px] tracking-wide">
-            {title}
-          </h4>
+      <div className="text-2xl p-2 bg-white/5 rounded-lg border border-white/10 shrink-0">{icon}</div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+          <h4 className="text-white font-bold text-[16px] tracking-wide">{title}</h4>
           <span className="text-[11px] font-semibold text-secondary bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">
             {year}
           </span>
         </div>
-        <p className="text-secondary text-[13px] leading-relaxed">
-          {description}
-        </p>
+        <p className="text-secondary text-[13px] leading-relaxed mb-3">{description}</p>
+
+        {/* Credential Link */}
+        {credentialUrl ? (
+          <a
+            href={credentialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[12px] font-semibold px-3 py-1.5 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer"
+            style={{
+              background: "linear-gradient(135deg, rgba(145,94,255,0.15), rgba(0,206,168,0.1))",
+              border: "1px solid rgba(145,94,255,0.35)",
+              color: "#915eff",
+            }}
+          >
+            <FaExternalLinkAlt className="text-[10px]" />
+            View Credential
+          </a>
+        ) : (
+          <span
+            className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1.5 rounded-lg"
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "#6b6a7a",
+            }}
+          >
+            <FaClock className="text-[10px]" />
+            Certificate Coming Soon
+          </span>
+        )}
       </div>
     </motion.div>
   );
@@ -126,6 +150,7 @@ const Hackathons = () => {
                 year={ach.year}
                 description={ach.description}
                 icon={ach.icon}
+                credentialUrl={ach.credentialUrl}
               />
             ))}
           </div>

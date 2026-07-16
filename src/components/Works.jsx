@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaCss3Alt, FaBrain } from "react-icons/fa";
-import { 
-  SiReact, 
-  SiMongodb, 
-  SiTailwindcss, 
+import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaCss3Alt, FaBrain, FaBookOpen } from "react-icons/fa";
+import {
+  SiReact,
+  SiMongodb,
+  SiTailwindcss,
   SiNodedotjs,
   SiExpress,
   SiJavascript,
@@ -13,42 +13,32 @@ import {
 import { styles } from "../style";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+import ProjectModal from "./ProjectModal";
 
 // Map tag names to React Icons
 const tagIconMap = {
-  react: { icon: SiReact, color: "text-blue-400" },
-  mongodb: { icon: SiMongodb, color: "text-green-500" },
-  tailwind: { icon: SiTailwindcss, color: "text-cyan-400" },
-  nodejs: { icon: SiNodedotjs, color: "text-emerald-500" },
-  express: { icon: SiExpress, color: "text-gray-300" },
-  javascript: { icon: SiJavascript, color: "text-yellow-400" },
-  css: { icon: FaCss3Alt, color: "text-blue-500" },
-  ai: { icon: FaBrain, color: "text-purple-400" },
-  html: { icon: SiHtml5, color: "text-orange-500" },
+  react:      { icon: SiReact,       color: "text-blue-400"    },
+  mongodb:    { icon: SiMongodb,     color: "text-green-500"   },
+  tailwind:   { icon: SiTailwindcss, color: "text-cyan-400"    },
+  nodejs:     { icon: SiNodedotjs,   color: "text-emerald-500" },
+  express:    { icon: SiExpress,     color: "text-gray-300"    },
+  javascript: { icon: SiJavascript,  color: "text-yellow-400"  },
+  css:        { icon: FaCss3Alt,     color: "text-blue-500"    },
+  ai:         { icon: FaBrain,       color: "text-purple-400"  },
+  html:       { icon: SiHtml5,       color: "text-orange-500"  },
 };
 
-const ProjectCard = ({
-  index,
-  name,
-  description,
-  tags,
-  image,
-  source_code_link,
-  live_link,
-}) => {
+const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_link, onCaseStudy, project }) => {
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
     const card = cardRef.current;
     if (!card) return;
-
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-
-    const rotateX = -(y / (rect.height / 2)) * 12; // limit to 12 degrees
+    const rotateX = -(y / (rect.height / 2)) * 12;
     const rotateY = (x / (rect.width / 2)) * 12;
-
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
   };
 
@@ -84,28 +74,20 @@ const ProjectCard = ({
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">
-              LIVE
-            </span>
+            <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">LIVE</span>
           </div>
 
           {/* Deployed Label */}
           <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-blue-500/30">
             <FaCheckCircle className="text-blue-400 text-[10px]" />
-            <span className="text-[9px] font-medium text-gray-200 uppercase tracking-wide">
-              Deployed / Active
-            </span>
+            <span className="text-[9px] font-medium text-gray-200 uppercase tracking-wide">Deployed / Active</span>
           </div>
         </div>
 
         {/* Project Details */}
         <div className="mt-5" style={{ transform: "translateZ(30px)" }}>
-          <h3 className="text-white font-bold text-[24px] tracking-wide">
-            {name}
-          </h3>
-          <p className="mt-2 text-secondary text-[14px] leading-relaxed line-clamp-3">
-            {description}
-          </p>
+          <h3 className="text-white font-bold text-[24px] tracking-wide">{name}</h3>
+          <p className="mt-2 text-secondary text-[14px] leading-relaxed line-clamp-3">{description}</p>
         </div>
 
         {/* Tech Stack and Buttons container */}
@@ -115,10 +97,7 @@ const ProjectCard = ({
             <div className="flex justify-between items-center mb-3">
               <div className="flex gap-2">
                 {tags.map((tag) => {
-                  const config = tagIconMap[tag.name.toLowerCase()] || {
-                    icon: () => null,
-                    color: "text-gray-400",
-                  };
+                  const config = tagIconMap[tag.name.toLowerCase()] || { icon: () => null, color: "text-gray-400" };
                   const Icon = config.icon;
                   return (
                     <div
@@ -131,9 +110,7 @@ const ProjectCard = ({
                   );
                 })}
               </div>
-              <span className="text-[11px] font-bold text-secondary uppercase tracking-wider">
-                Tech Usage
-              </span>
+              <span className="text-[11px] font-bold text-secondary uppercase tracking-wider">Tech Usage</span>
             </div>
 
             {/* GitHub-style stacked percentage bar */}
@@ -141,11 +118,10 @@ const ProjectCard = ({
               {tags.map((tag) => {
                 let bgGradient = "bg-gray-400";
                 if (tag.color.includes("orange")) bgGradient = "bg-gradient-to-r from-orange-600 to-yellow-500";
-                else if (tag.color.includes("blue")) bgGradient = "bg-gradient-to-r from-blue-600 to-cyan-500";
-                else if (tag.color.includes("green")) bgGradient = "bg-gradient-to-r from-green-600 to-emerald-500";
-                else if (tag.color.includes("pink")) bgGradient = "bg-gradient-to-r from-pink-600 to-rose-500";
+                else if (tag.color.includes("blue"))   bgGradient = "bg-gradient-to-r from-blue-600 to-cyan-500";
+                else if (tag.color.includes("green"))  bgGradient = "bg-gradient-to-r from-green-600 to-emerald-500";
+                else if (tag.color.includes("pink"))   bgGradient = "bg-gradient-to-r from-pink-600 to-rose-500";
                 else if (tag.color.includes("purple")) bgGradient = "bg-gradient-to-r from-purple-600 to-indigo-500";
-
                 return (
                   <div
                     key={tag.name}
@@ -162,11 +138,10 @@ const ProjectCard = ({
               {tags.map((tag) => {
                 let dotColor = "bg-gray-400";
                 if (tag.color.includes("orange")) dotColor = "bg-orange-500";
-                else if (tag.color.includes("blue")) dotColor = "bg-blue-400";
-                else if (tag.color.includes("green")) dotColor = "bg-green-400";
-                else if (tag.color.includes("pink")) dotColor = "bg-pink-400";
+                else if (tag.color.includes("blue"))   dotColor = "bg-blue-400";
+                else if (tag.color.includes("green"))  dotColor = "bg-green-400";
+                else if (tag.color.includes("pink"))   dotColor = "bg-pink-400";
                 else if (tag.color.includes("purple")) dotColor = "bg-purple-400";
-
                 return (
                   <div key={tag.name} className="flex items-center gap-1.5">
                     <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
@@ -180,26 +155,42 @@ const ProjectCard = ({
           </div>
 
           {/* Call To Actions */}
-          <div className="flex gap-3">
-            <a
-              href={live_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-[14px] transition-colors border border-purple-500/20"
+          <div className="flex flex-col gap-2">
+            {/* Case Study Button — full width, prominent */}
+            <button
+              onClick={() => onCaseStudy(project)}
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-[14px] text-white transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+              style={{
+                background: "linear-gradient(135deg, #4c1d95, #7c3aed, #915eff)",
+                boxShadow: "0 4px 20px rgba(145,94,255,0.3)",
+              }}
             >
-              <span>View Live</span>
-              <FaExternalLinkAlt className="text-xs" />
-            </a>
-            <a
-              href={source_code_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-black/50 hover:bg-black/85 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-[14px] transition-all border border-white/10 hover:border-purple-500/30"
-              title="GitHub Repository"
-            >
-              <FaGithub className="text-lg" />
-              <span>GitHub</span>
-            </a>
+              <FaBookOpen className="text-sm" />
+              View Case Study
+            </button>
+
+            {/* Live + GitHub side by side */}
+            <div className="flex gap-2">
+              <a
+                href={live_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold py-2 px-4 rounded-xl flex items-center justify-center gap-1.5 text-[13px] transition-colors border border-white/10 hover:border-purple-500/30"
+              >
+                <FaExternalLinkAlt className="text-[10px]" />
+                Live
+              </a>
+              <a
+                href={source_code_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold py-2 px-4 rounded-xl flex items-center justify-center gap-1.5 text-[13px] transition-all border border-white/10 hover:border-purple-500/30"
+                title="GitHub Repository"
+              >
+                <FaGithub className="text-sm" />
+                GitHub
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -208,6 +199,8 @@ const ProjectCard = ({
 };
 
 const Works = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <section id="projects" className={`${styles.padding} max-w-7xl mx-auto relative z-0`}>
       <motion.div variants={textVariant()}>
@@ -220,15 +213,31 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          The following projects demonstrate my expertise as a software engineer, highlighting both frontend UI work and backend systems integrations. Each repository contains clean code architectures with fully functional live deployments.
+          The following projects demonstrate my expertise as a software engineer, highlighting both frontend UI work and
+          backend systems integrations. Click <span className="text-[#915eff] font-semibold">View Case Study</span> on
+          any project to see the full problem-solving breakdown.
         </motion.p>
       </div>
 
       <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
         {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
+          <ProjectCard
+            key={`project-${index}`}
+            index={index}
+            {...project}
+            project={project}
+            onCaseStudy={setSelectedProject}
+          />
         ))}
       </div>
+
+      {/* Case Study Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   );
 };
