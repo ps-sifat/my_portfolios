@@ -1,6 +1,13 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaCheckCircle, FaCss3Alt, FaBrain, FaBookOpen } from "react-icons/fa";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaCheckCircle,
+  FaCss3Alt,
+  FaBrain,
+  FaBookOpen,
+} from "react-icons/fa";
 import {
   SiReact,
   SiMongodb,
@@ -17,18 +24,28 @@ import ProjectModal from "./ProjectModal";
 
 // Map tag names to React Icons
 const tagIconMap = {
-  react:      { icon: SiReact,       color: "text-blue-400"    },
-  mongodb:    { icon: SiMongodb,     color: "text-green-500"   },
-  tailwind:   { icon: SiTailwindcss, color: "text-cyan-400"    },
-  nodejs:     { icon: SiNodedotjs,   color: "text-emerald-500" },
-  express:    { icon: SiExpress,     color: "text-gray-300"    },
-  javascript: { icon: SiJavascript,  color: "text-yellow-400"  },
-  css:        { icon: FaCss3Alt,     color: "text-blue-500"    },
-  ai:         { icon: FaBrain,       color: "text-purple-400"  },
-  html:       { icon: SiHtml5,       color: "text-orange-500"  },
+  react: { icon: SiReact, color: "text-blue-400" },
+  mongodb: { icon: SiMongodb, color: "text-green-500" },
+  tailwind: { icon: SiTailwindcss, color: "text-cyan-400" },
+  nodejs: { icon: SiNodedotjs, color: "text-emerald-500" },
+  express: { icon: SiExpress, color: "text-gray-300" },
+  javascript: { icon: SiJavascript, color: "text-yellow-400" },
+  css: { icon: FaCss3Alt, color: "text-blue-500" },
+  ai: { icon: FaBrain, color: "text-purple-400" },
+  html: { icon: SiHtml5, color: "text-orange-500" },
 };
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_link, onCaseStudy, project }) => {
+const ProjectCard = ({
+  index,
+  name,
+  description,
+  tags,
+  image,
+  source_code_link,
+  live_link,
+  onCaseStudy,
+  project,
+}) => {
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -74,20 +91,28 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">LIVE</span>
+            <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">
+              LIVE
+            </span>
           </div>
 
           {/* Deployed Label */}
           <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-blue-500/30">
             <FaCheckCircle className="text-blue-400 text-[10px]" />
-            <span className="text-[9px] font-medium text-gray-200 uppercase tracking-wide">Deployed / Active</span>
+            <span className="text-[9px] font-medium text-gray-200 uppercase tracking-wide">
+              Deployed / Active
+            </span>
           </div>
         </div>
 
         {/* Project Details */}
         <div className="mt-5" style={{ transform: "translateZ(30px)" }}>
-          <h3 className="text-white font-bold text-[24px] tracking-wide">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px] leading-relaxed line-clamp-3">{description}</p>
+          <h3 className="text-[var(--text-primary)] font-bold text-[24px] tracking-wide">
+            {name}
+          </h3>
+          <p className="mt-2 text-secondary text-[14px] leading-relaxed line-clamp-3">
+            {description}
+          </p>
         </div>
 
         {/* Tech Stack and Buttons container */}
@@ -97,7 +122,10 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
             <div className="flex justify-between items-center mb-3">
               <div className="flex gap-2">
                 {tags.map((tag) => {
-                  const config = tagIconMap[tag.name.toLowerCase()] || { icon: () => null, color: "text-gray-400" };
+                  const config = tagIconMap[tag.name.toLowerCase()] || {
+                    icon: () => null,
+                    color: "text-gray-400",
+                  };
                   const Icon = config.icon;
                   return (
                     <div
@@ -110,18 +138,25 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                   );
                 })}
               </div>
-              <span className="text-[11px] font-bold text-secondary uppercase tracking-wider">Tech Usage</span>
+              <span className="text-[11px] font-bold text-secondary uppercase tracking-wider">
+                Tech Usage
+              </span>
             </div>
 
             {/* GitHub-style stacked percentage bar */}
             <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden flex gap-[2px] mb-3">
               {tags.map((tag) => {
                 let bgGradient = "bg-gray-400";
-                if (tag.color.includes("orange")) bgGradient = "bg-gradient-to-r from-orange-600 to-yellow-500";
-                else if (tag.color.includes("blue"))   bgGradient = "bg-gradient-to-r from-blue-600 to-cyan-500";
-                else if (tag.color.includes("green"))  bgGradient = "bg-gradient-to-r from-green-600 to-emerald-500";
-                else if (tag.color.includes("pink"))   bgGradient = "bg-gradient-to-r from-pink-600 to-rose-500";
-                else if (tag.color.includes("purple")) bgGradient = "bg-gradient-to-r from-purple-600 to-indigo-500";
+                if (tag.color.includes("orange"))
+                  bgGradient = "bg-gradient-to-r from-orange-600 to-yellow-500";
+                else if (tag.color.includes("blue"))
+                  bgGradient = "bg-gradient-to-r from-blue-600 to-cyan-500";
+                else if (tag.color.includes("green"))
+                  bgGradient = "bg-gradient-to-r from-green-600 to-emerald-500";
+                else if (tag.color.includes("pink"))
+                  bgGradient = "bg-gradient-to-r from-pink-600 to-rose-500";
+                else if (tag.color.includes("purple"))
+                  bgGradient = "bg-gradient-to-r from-purple-600 to-indigo-500";
                 return (
                   <div
                     key={tag.name}
@@ -138,15 +173,19 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
               {tags.map((tag) => {
                 let dotColor = "bg-gray-400";
                 if (tag.color.includes("orange")) dotColor = "bg-orange-500";
-                else if (tag.color.includes("blue"))   dotColor = "bg-blue-400";
-                else if (tag.color.includes("green"))  dotColor = "bg-green-400";
-                else if (tag.color.includes("pink"))   dotColor = "bg-pink-400";
-                else if (tag.color.includes("purple")) dotColor = "bg-purple-400";
+                else if (tag.color.includes("blue")) dotColor = "bg-blue-400";
+                else if (tag.color.includes("green")) dotColor = "bg-green-400";
+                else if (tag.color.includes("pink")) dotColor = "bg-pink-400";
+                else if (tag.color.includes("purple"))
+                  dotColor = "bg-purple-400";
                 return (
                   <div key={tag.name} className="flex items-center gap-1.5">
                     <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
                     <span className="text-[11px] font-semibold text-secondary uppercase tracking-wider">
-                      {tag.name} <span className="text-white ml-0.5">{tag.percent}%</span>
+                      {tag.name}{" "}
+                      <span className="text-[var(--text-primary)] ml-0.5">
+                        {tag.percent}%
+                      </span>
                     </span>
                   </div>
                 );
@@ -161,7 +200,8 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
               onClick={() => onCaseStudy(project)}
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-[14px] text-white transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               style={{
-                background: "linear-gradient(135deg, #4c1d95, #7c3aed, #915eff)",
+                background:
+                  "linear-gradient(135deg, #4c1d95, #7c3aed, #915eff)",
                 boxShadow: "0 4px 20px rgba(145,94,255,0.3)",
               }}
             >
@@ -202,7 +242,10 @@ const Works = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="projects" className={`${styles.padding} max-w-7xl mx-auto relative z-0`}>
+    <section
+      id="projects"
+      className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+    >
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>My Projects Showcase</p>
         <h2 className={styles.sectionHeadText}>Projects.</h2>
@@ -213,9 +256,11 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          The following projects demonstrate my expertise as a software engineer, highlighting both frontend UI work and
-          backend systems integrations. Click <span className="text-[#915eff] font-semibold">View Case Study</span> on
-          any project to see the full problem-solving breakdown.
+          The following projects demonstrate my expertise as a software
+          engineer, highlighting both frontend UI work and backend systems
+          integrations. Click{" "}
+          <span className="text-[#915eff] font-semibold">View Case Study</span>{" "}
+          on any project to see the full problem-solving breakdown.
         </motion.p>
       </div>
 

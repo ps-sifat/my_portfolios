@@ -1,18 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { lazy, Suspense, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { 
-  FaEnvelope, 
-  FaLinkedin, 
-  FaGithub, 
-  FaWhatsapp, 
-  FaMapMarkerAlt, 
-  FaPaperPlane, 
-  FaHeart 
+import {
+  FaEnvelope,
+  FaLinkedin,
+  FaGithub,
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaPaperPlane,
+  FaHeart,
 } from "react-icons/fa";
 import { styles } from "../style";
-import { EarthCanvas } from "./canvas";
 import { slideIn } from "../utils/motion";
+
+const EarthCanvas = lazy(() =>
+  import("./canvas").then((mod) => ({ default: mod.EarthCanvas })),
+);
 
 // Configuration for EmailJS (Replace with actual credentials)
 const EMAILJS_SERVICE_ID = "service_xxxxxx";
@@ -30,7 +33,11 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [statusMsg, setStatusMsg] = useState({ show: false, text: "", type: "" });
+  const [statusMsg, setStatusMsg] = useState({
+    show: false,
+    text: "",
+    type: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +51,7 @@ const Contact = () => {
   const validate = () => {
     const newErrors = {};
     if (!form.name.trim()) newErrors.name = "Name is required";
-    
+
     if (!form.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
@@ -81,7 +88,7 @@ const Contact = () => {
           subject: form.subject,
           message: form.message,
         },
-        EMAILJS_PUBLIC_KEY
+        EMAILJS_PUBLIC_KEY,
       )
       .then(
         () => {
@@ -114,20 +121,48 @@ const Contact = () => {
           setTimeout(() => {
             setStatusMsg({ show: false, text: "", type: "" });
           }, 6000);
-        }
+        },
       );
   };
 
   const contactInfo = [
-    { icon: FaEnvelope, text: "mdsifatulislam2357@gmail.com", href: "mailto:mdsifatulislam2357@gmail.com", color: "text-purple-400" },
-    { icon: FaLinkedin, text: "Md. Sifatul Islam", href: "https://linkedin.com/in/md-sifatul-islam", color: "text-blue-400" },
-    { icon: FaGithub, text: "ps-sifat", href: "https://github.com/ps-sifat", color: "text-white" },
-    { icon: FaWhatsapp, text: "+880 1850-499490", href: "https://wa.me/8801850499490", color: "text-green-400" },
-    { icon: FaMapMarkerAlt, text: "Dhaka, Bangladesh", href: null, color: "text-pink-400" },
+    {
+      icon: FaEnvelope,
+      text: "mdsifatulislam2357@gmail.com",
+      href: "mailto:mdsifatulislam2357@gmail.com",
+      color: "text-purple-400",
+    },
+    {
+      icon: FaLinkedin,
+      text: "Md. Sifatul Islam",
+      href: "https://linkedin.com/in/md-sifatul-islam",
+      color: "text-blue-400",
+    },
+    {
+      icon: FaGithub,
+      text: "ps-sifat",
+      href: "https://github.com/ps-sifat",
+      color: "text-white",
+    },
+    {
+      icon: FaWhatsapp,
+      text: "+880 1850-499490",
+      href: "https://wa.me/8801850499490",
+      color: "text-green-400",
+    },
+    {
+      icon: FaMapMarkerAlt,
+      text: "Dhaka, Bangladesh",
+      href: null,
+      color: "text-pink-400",
+    },
   ];
 
   return (
-    <section id="contact" className={`${styles.padding} max-w-7xl mx-auto relative z-0`}>
+    <section
+      id="contact"
+      className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+    >
       <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
         {/* Left Form Panel */}
         <motion.div
@@ -141,7 +176,9 @@ const Contact = () => {
           <div className="mt-8 flex flex-col gap-4">
             {contactInfo.map((info, idx) => (
               <div key={idx} className="flex items-center gap-4">
-                <div className={`text-xl ${info.color} p-2 rounded-lg bg-white/5 border border-white/5`}>
+                <div
+                  className={`text-xl ${info.color} p-2 rounded-lg bg-white/5 border border-white/5`}
+                >
                   <info.icon />
                 </div>
                 {info.href ? (
@@ -167,7 +204,9 @@ const Contact = () => {
           >
             {/* Name Input */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-white font-medium text-[14px]">Your Name</span>
+              <span className="text-white font-medium text-[14px]">
+                Your Name
+              </span>
               <input
                 type="text"
                 name="name"
@@ -176,12 +215,18 @@ const Contact = () => {
                 placeholder="What's your name?"
                 className="glass-input py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none focus:border-purple-500/50 transition-all font-medium text-[15px]"
               />
-              {errors.name && <span className="text-red-400 text-xs pl-1 mt-1">{errors.name}</span>}
+              {errors.name && (
+                <span className="text-red-400 text-xs pl-1 mt-1">
+                  {errors.name}
+                </span>
+              )}
             </div>
 
             {/* Email Input */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-white font-medium text-[14px]">Your Email</span>
+              <span className="text-white font-medium text-[14px]">
+                Your Email
+              </span>
               <input
                 type="email"
                 name="email"
@@ -190,12 +235,18 @@ const Contact = () => {
                 placeholder="What's your email address?"
                 className="glass-input py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none focus:border-purple-500/50 transition-all font-medium text-[15px]"
               />
-              {errors.email && <span className="text-red-400 text-xs pl-1 mt-1">{errors.email}</span>}
+              {errors.email && (
+                <span className="text-red-400 text-xs pl-1 mt-1">
+                  {errors.email}
+                </span>
+              )}
             </div>
 
             {/* Subject Input */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-white font-medium text-[14px]">Subject</span>
+              <span className="text-white font-medium text-[14px]">
+                Subject
+              </span>
               <input
                 type="text"
                 name="subject"
@@ -204,12 +255,18 @@ const Contact = () => {
                 placeholder="What is this regarding?"
                 className="glass-input py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none focus:border-purple-500/50 transition-all font-medium text-[15px]"
               />
-              {errors.subject && <span className="text-red-400 text-xs pl-1 mt-1">{errors.subject}</span>}
+              {errors.subject && (
+                <span className="text-red-400 text-xs pl-1 mt-1">
+                  {errors.subject}
+                </span>
+              )}
             </div>
 
             {/* Message Input */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-white font-medium text-[14px]">Your Message</span>
+              <span className="text-white font-medium text-[14px]">
+                Your Message
+              </span>
               <textarea
                 rows={5}
                 name="message"
@@ -218,7 +275,11 @@ const Contact = () => {
                 placeholder="Write your message here..."
                 className="glass-input py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none focus:border-purple-500/50 transition-all font-medium resize-none text-[15px]"
               />
-              {errors.message && <span className="text-red-400 text-xs pl-1 mt-1">{errors.message}</span>}
+              {errors.message && (
+                <span className="text-red-400 text-xs pl-1 mt-1">
+                  {errors.message}
+                </span>
+              )}
             </div>
 
             {/* Status Message Notification */}
@@ -260,15 +321,18 @@ const Contact = () => {
           variants={slideIn("right", "tween", 0.2, 0.75)}
           className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px] flex items-center justify-center"
         >
-          <EarthCanvas />
+          <Suspense fallback={null}>
+            <EarthCanvas />
+          </Suspense>
         </motion.div>
       </div>
 
       {/* Footer */}
-      <footer className="w-full bg-[#050816]/80 backdrop-blur-sm border-t border-white/5 py-8 mt-12">
+      <footer className="w-full bg-[var(--bg-footer)] backdrop-blur-sm border-t border-[var(--border-color)] py-8 mt-12">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-secondary text-[14px] text-center md:text-left">
-            &copy; {new Date().getFullYear()} Md Sifatul Islam. All rights reserved.
+            &copy; {new Date().getFullYear()} Md Sifatul Islam. All rights
+            reserved.
           </p>
 
           <p className="text-secondary text-[14px] flex items-center gap-1.5 justify-center">
@@ -312,4 +376,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Contact;

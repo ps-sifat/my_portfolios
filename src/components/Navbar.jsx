@@ -4,17 +4,18 @@ import { close, logo, menu } from "../assets";
 import { navLinks } from "../constants";
 import { useTheme } from "../context/ThemeContext";
 
-/* ─── Sun / Moon Toggle Button ─── */
+/* ─── Sun / Moon Toggle Button with Circular Reveal ─── */
 const ThemeToggle = () => {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, handleThemeClick } = useTheme();
 
   return (
     <button
       id="theme-toggle-btn"
-      onClick={toggleTheme}
+      onClick={handleThemeClick}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-pressed={isDark}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="relative w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-300 cursor-pointer overflow-hidden"
+      className="relative w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-300 cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)]"
       style={{
         borderColor: "var(--accent)",
         background: isDark
@@ -30,10 +31,21 @@ const ThemeToggle = () => {
         className="absolute inset-0 flex items-center justify-center transition-all duration-500"
         style={{
           opacity: isDark ? 0 : 1,
-          transform: isDark ? "rotate(-90deg) scale(0.5)" : "rotate(0deg) scale(1)",
+          transform: isDark
+            ? "rotate(-90deg) scale(0.5)"
+            : "rotate(0deg) scale(1)",
         }}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#f59e0b"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <circle cx="12" cy="12" r="5" />
           <line x1="12" y1="1" x2="12" y2="3" />
           <line x1="12" y1="21" x2="12" y2="23" />
@@ -51,10 +63,21 @@ const ThemeToggle = () => {
         className="absolute inset-0 flex items-center justify-center transition-all duration-500"
         style={{
           opacity: isDark ? 1 : 0,
-          transform: isDark ? "rotate(0deg) scale(1)" : "rotate(90deg) scale(0.5)",
+          transform: isDark
+            ? "rotate(0deg) scale(1)"
+            : "rotate(90deg) scale(0.5)",
         }}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="#a78bfa" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="#a78bfa"
+          stroke="#a78bfa"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
       </span>
@@ -86,9 +109,7 @@ const Navbar = () => {
     <>
       <nav
         className={`w-full flex items-center justify-center fixed bg-transparent top-0 left-0 z-20 sm:px-16 px-6 transition-all duration-300 ${
-          isScrolled
-            ? "py-2.5 md:py-3 glass-navbar shadow-lg"
-            : "py-4 md:py-5"
+          isScrolled ? "py-2.5 md:py-3 glass-navbar shadow-lg" : "py-4 md:py-5"
         }`}
       >
         <div className="w-full flex justify-between items-center container !py-4">
@@ -101,7 +122,7 @@ const Navbar = () => {
             }}
           >
             <img className="w-6 h-9 object-contain" src={logo} alt="logo" />
-            <p className="text-white text-[20px] font-bold font-poppins tracking-wider">
+            <p className="text-[var(--text-primary)] text-[20px] font-bold font-poppins tracking-wider">
               Sifat.dev
             </p>
           </Link>
@@ -113,11 +134,16 @@ const Navbar = () => {
                 <li
                   key={link.id}
                   className={`relative px-4 py-1.5 rounded-full cursor-pointer text-[15px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${
-                    active === link.title ? "text-white bg-[#915eff]" : "text-secondary hover:text-white"
+                    active === link.title
+                      ? "text-white bg-[#915eff]"
+                      : "text-secondary hover:text-white"
                   }`}
                   onClick={() => setActive(link.title)}
                 >
-                  <a href={`#${link.id}`} className="relative z-10 block w-full h-full text-center">
+                  <a
+                    href={`#${link.id}`}
+                    className="relative z-10 block w-full h-full text-center"
+                  >
                     {link.title}
                   </a>
                   {/* Expanding background circle on hover */}
@@ -141,8 +167,10 @@ const Navbar = () => {
               onClick={() => setToggle(!toggle)}
             />
             <div
-              className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl border border-white/10 ${
-                !toggle ? "hidden" : "flex justify-center py-4 items-center animate-fade-in"
+              className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl border border-[var(--border-subtle)] ${
+                !toggle
+                  ? "hidden"
+                  : "flex justify-center py-4 items-center animate-fade-in"
               }`}
             >
               <ul className="list-none flex justify-end items-stretch flex-col gap-3 w-full">
@@ -150,14 +178,19 @@ const Navbar = () => {
                   <li
                     key={link.id}
                     className={`relative px-4 py-2 rounded-xl cursor-pointer text-[14px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${
-                      active === link.title ? "text-white bg-[#915eff]" : "text-secondary hover:text-white"
+                      active === link.title
+                        ? "text-white bg-[#915eff]"
+                        : "text-secondary hover:text-white"
                     }`}
                     onClick={() => {
                       setToggle(!toggle);
                       setActive(link.title);
                     }}
                   >
-                    <a href={`#${link.id}`} className="relative z-10 block w-full h-full text-center">
+                    <a
+                      href={`#${link.id}`}
+                      className="relative z-10 block w-full h-full text-center"
+                    >
                       {link.title}
                     </a>
                     {/* Expanding background circle on hover */}

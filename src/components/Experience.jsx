@@ -15,14 +15,14 @@ const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
       contentStyle={{
-        background: "rgba(255,255,255,0.03)",
+        background: "var(--bg-card)",
         backdropFilter: "blur(12px)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        color: "#fff",
-        boxShadow: "0 8px 32px 0 rgba(3,7,18,0.5)",
+        border: "1px solid var(--border-color)",
+        color: "var(--text-primary)",
+        boxShadow: "var(--glass-shadow)",
         borderRadius: "16px",
       }}
-      contentArrowStyle={{ borderRight: "7px solid rgba(255,255,255,0.08)" }}
+      contentArrowStyle={{ borderRight: "7px solid var(--border-color)" }}
       date={
         <span className="text-secondary font-medium text-[14px]">
           {experience.date}
@@ -43,7 +43,7 @@ const ExperienceCard = ({ experience }) => {
       }
     >
       <div>
-        <h3 className="text-white text-[20px] font-bold leading-tight">
+        <h3 className="text-[var(--text-primary)] text-[20px] font-bold leading-tight">
           {experience.title}
         </h3>
         <p
@@ -58,7 +58,7 @@ const ExperienceCard = ({ experience }) => {
         {experience.points.map((point, index) => (
           <li
             key={`experience-point-${index}`}
-            className="text-white-100 text-[14px] pl-1 tracking-wide flex items-start gap-2 leading-relaxed"
+            className="text-secondary text-[14px] pl-1 tracking-wide flex items-start gap-2 leading-relaxed"
           >
             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#915eff] shrink-0" />
             <span>{point}</span>
@@ -76,10 +76,12 @@ const Experience = () => {
       className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
     >
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
+        <p className={`${styles.sectionSubText} text-center text-secondary`}>
           My Professional Training
         </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
+        <h2
+          className={`${styles.sectionHeadText} text-center text-[var(--text-primary)]`}
+        >
           Training &amp; Certifications.
         </h2>
       </motion.div>

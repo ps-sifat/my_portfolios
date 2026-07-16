@@ -6,7 +6,7 @@
 
   --logoloop-gap: 32px;
   --logoloop-logoHeight: 48px;
-  --logoloop-fadeColorAuto: #050816;
+  --logoloop-fadeColorAuto: var(--bg-primary, #050816);
 }
 
 .logoloop--vertical {
@@ -117,7 +117,7 @@
   background: linear-gradient(
     to right,
     var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(5, 8, 22, 0) 100%
+    transparent 100%
   );
 }
 
@@ -126,7 +126,7 @@
   background: linear-gradient(
     to left,
     var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(5, 8, 22, 0) 100%
+    transparent 100%
   );
 }
 

@@ -65,10 +65,14 @@ const EducationCard = ({ title, degree, institution, year, grade, details, Icon,
   return (
     <motion.div
       variants={fadeIn("up", "spring", index * 0.2, 0.75)}
-      className="relative pl-8 pb-10 border-l border-white/10 last:pb-0"
+      className="relative pl-8 pb-10 last:pb-0"
+      style={{ borderLeft: "1px solid var(--border-subtle)" }}
     >
       {/* Icon node on timeline line */}
-      <div className={`absolute -left-[20px] top-0 w-10 h-10 rounded-full bg-gradient-to-br ${color} flex items-center justify-center text-white text-lg shadow-[0_0_15px_currentColor] z-10 border-3 border-[#050816]`}>
+      <div
+        className={`absolute -left-[20px] top-0 w-10 h-10 rounded-full bg-gradient-to-br ${color} flex items-center justify-center text-white text-lg shadow-[0_0_15px_currentColor] z-10 border-3`}
+        style={{ borderColor: "var(--timeline-node-border)" }}
+      >
         <Icon />
       </div>
 
@@ -108,8 +112,8 @@ const Education = () => {
   return (
     <section id="education" className={`${styles.padding} max-w-7xl mx-auto relative z-0`}>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>My Academic & Training History</p>
-        <h2 className={styles.sectionHeadText}>Education.</h2>
+        <p className={`${styles.sectionSubText} text-secondary`}>My Academic & Training History</p>
+        <h2 className={`${styles.sectionHeadText} text-white`}>Education.</h2>
       </motion.div>
 
       <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -123,7 +127,7 @@ const Education = () => {
             <span>Training & Certifications</span>
           </motion.h3>
 
-          <div className="relative border-l border-white/5 pl-2 ml-4">
+          <div className="relative pl-2 ml-4" style={{ borderLeft: "1px solid var(--border-faint)" }}>
             {professionalEducation.map((edu, index) => (
               <EducationCard
                 key={`prof-${index}`}
@@ -149,7 +153,7 @@ const Education = () => {
             <span>Academic Education</span>
           </motion.h3>
 
-          <div className="relative border-l border-white/5 pl-2 ml-4">
+          <div className="relative pl-2 ml-4" style={{ borderLeft: "1px solid var(--border-faint)" }}>
             {academicEducation.map((edu, index) => (
               <EducationCard
                 key={`acad-${index}`}

@@ -1,11 +1,27 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaTrophy, FaUsers, FaCalendarAlt, FaAward, FaLightbulb, FaExternalLinkAlt, FaClock } from "react-icons/fa";
+import {
+  FaTrophy,
+  FaUsers,
+  FaCalendarAlt,
+  FaAward,
+  FaLightbulb,
+  FaExternalLinkAlt,
+  FaClock,
+} from "react-icons/fa";
 import { styles } from "../style";
 import { fadeIn, textVariant } from "../utils/motion";
 import { hackathons, achievements } from "../constants";
 
-const HackathonCard = ({ event, team, role, date, description, tags, index }) => {
+const HackathonCard = ({
+  event,
+  team,
+  role,
+  date,
+  description,
+  tags,
+  index,
+}) => {
   return (
     <motion.div
       variants={fadeIn("right", "spring", index * 0.3, 0.75)}
@@ -22,7 +38,7 @@ const HackathonCard = ({ event, team, role, date, description, tags, index }) =>
           </span>
         </div>
 
-        <h3 className="text-white font-bold text-[20px] tracking-wide mb-1">
+        <h3 className="text-[var(--text-primary)] font-bold text-[20px] tracking-wide mb-1">
           {event}
         </h3>
         <p className="text-purple-400 font-semibold text-[14px] mb-3">
@@ -32,7 +48,10 @@ const HackathonCard = ({ event, team, role, date, description, tags, index }) =>
         <div className="flex flex-wrap gap-4 text-secondary text-[13px] mb-4 bg-white/5 p-3 rounded-lg border border-white/5">
           <div className="flex items-center gap-1.5">
             <FaUsers className="text-[#915eff]" />
-            <span>Team: <b className="text-white font-medium">{team}</b></span>
+            <span>
+              Team:{" "}
+              <b className="text-[var(--text-primary)] font-medium">{team}</b>
+            </span>
           </div>
         </div>
 
@@ -55,21 +74,34 @@ const HackathonCard = ({ event, team, role, date, description, tags, index }) =>
   );
 };
 
-const AchievementItem = ({ title, year, description, icon, credentialUrl, index }) => {
+const AchievementItem = ({
+  title,
+  year,
+  description,
+  icon,
+  credentialUrl,
+  index,
+}) => {
   return (
     <motion.div
       variants={fadeIn("left", "spring", index * 0.2, 0.75)}
       className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/5 transition-all duration-300"
     >
-      <div className="text-2xl p-2 bg-white/5 rounded-lg border border-white/10 shrink-0">{icon}</div>
+      <div className="text-2xl p-2 bg-white/5 rounded-lg border border-white/10 shrink-0">
+        {icon}
+      </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-          <h4 className="text-white font-bold text-[16px] tracking-wide">{title}</h4>
+          <h4 className="text-white font-bold text-[16px] tracking-wide">
+            {title}
+          </h4>
           <span className="text-[11px] font-semibold text-secondary bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">
             {year}
           </span>
         </div>
-        <p className="text-secondary text-[13px] leading-relaxed mb-3">{description}</p>
+        <p className="text-secondary text-[13px] leading-relaxed mb-3">
+          {description}
+        </p>
 
         {/* Credential Link */}
         {credentialUrl ? (
@@ -79,7 +111,8 @@ const AchievementItem = ({ title, year, description, icon, credentialUrl, index 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-[12px] font-semibold px-3 py-1.5 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer"
             style={{
-              background: "linear-gradient(135deg, rgba(145,94,255,0.15), rgba(0,206,168,0.1))",
+              background:
+                "linear-gradient(135deg, rgba(145,94,255,0.15), rgba(0,206,168,0.1))",
               border: "1px solid rgba(145,94,255,0.35)",
               color: "#915eff",
             }}
@@ -107,9 +140,14 @@ const AchievementItem = ({ title, year, description, icon, credentialUrl, index 
 
 const Hackathons = () => {
   return (
-    <section id="hackathons" className={`${styles.padding} max-w-7xl mx-auto relative z-0`}>
+    <section
+      id="hackathons"
+      className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+    >
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Competitive Coding & Achievements</p>
+        <p className={styles.sectionSubText}>
+          Competitive Coding & Achievements
+        </p>
         <h2 className={styles.sectionHeadText}>Hackathons &amp; Activities.</h2>
       </motion.div>
 

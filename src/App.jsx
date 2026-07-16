@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   About,
@@ -11,24 +11,11 @@ import {
   Tech,
   Works,
   SectionWrapper,
-  Loader,
 } from "./components";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate 3D model loading time (2-3 seconds)
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <BrowserRouter>
-      {isLoading && <Loader />}
       <div className="relative z-0 bg-primary">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
           <Navbar />
@@ -61,4 +48,3 @@ const App = () => {
 };
 
 export default App;
-

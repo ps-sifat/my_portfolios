@@ -25,11 +25,9 @@ const ServiceCard = ({ index, title, icon }) => {
           borderRadius={20}
           className="w-full"
         >
-          <div
-            className="glass-card rounded-[20px] py-5 px-10 min-h-[280px] flex justify-evenly items-center flex-col hover:shadow-[0_0_20px_rgba(145,94,255,0.15)] transition-all duration-300 select-none"
-          >
+          <div className="glass-card rounded-[20px] py-5 px-10 min-h-[280px] flex justify-evenly items-center flex-col hover:shadow-[0_0_20px_rgba(145,94,255,0.15)] transition-all duration-300 select-none">
             <img src={icon} alt={title} className="w-16 h-16 object-contain" />
-            <h3 className="text-white text-[20px] font-bold text-center leading-snug">
+            <h3 className="text-[var(--text-primary)] text-[20px] font-bold text-center leading-snug">
               {title}
             </h3>
           </div>
@@ -41,7 +39,10 @@ const ServiceCard = ({ index, title, icon }) => {
 
 const About = () => {
   return (
-    <section id="about" className={`${styles.padding} max-w-7xl mx-auto relative z-0`}>
+    <section
+      id="about"
+      className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+    >
       <motion.div>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>About Me.</h2>
@@ -52,14 +53,19 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        I am <span className="text-white font-semibold">Md. Sifatul Islam</span>,
-        a passionate Full Stack Developer currently pursuing a{" "}
+        I am{" "}
+        <span className="text-[var(--text-primary)] font-semibold">
+          Md. Sifatul Islam
+        </span>
+        , a passionate Full Stack Developer currently pursuing a{" "}
         <span className="text-white font-semibold">
           Bachelor of Science in Computer Science &amp; Engineering
         </span>{" "}
         at the{" "}
-        <span className="text-white font-semibold">University of Asia Pacific</span>,
-        Dhaka, Bangladesh.
+        <span className="text-[var(--text-primary)] font-semibold">
+          University of Asia Pacific
+        </span>
+        , Dhaka, Bangladesh.
       </motion.p>
 
       <motion.p
@@ -71,13 +77,17 @@ const About = () => {
           Professional MERN Stack Development
         </span>{" "}
         and{" "}
-        <span className="text-white font-semibold">Professional Web Design</span>{" "}
+        <span className="text-[var(--text-primary)] font-semibold">
+          Professional Web Design
+        </span>{" "}
         training at{" "}
-        <span className="text-white font-semibold">Creative IT Institute</span>. I
-        enjoy building modern web applications, solving real-world problems,
+        <span className="text-[var(--text-primary)] font-semibold">
+          Creative IT Institute
+        </span>
+        . I enjoy building modern web applications, solving real-world problems,
         participating in hackathons, and continuously learning about AI and
-        software engineering. I am actively seeking internship and junior developer
-        opportunities to contribute and grow.
+        software engineering. I am actively seeking internship and junior
+        developer opportunities to contribute and grow.
       </motion.p>
 
       {/* Quick contact line */}

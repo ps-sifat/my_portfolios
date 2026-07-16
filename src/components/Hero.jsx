@@ -1,13 +1,38 @@
-import React from "react";
-import ComputersCanvas from "../components/canvas/Computers";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { github } from "../assets";
 import { FaDownload, FaMapMarkerAlt } from "react-icons/fa";
 import resume from "../assets/cv/SifatResume.pdf";
 
+const ComputersCanvas = lazy(() => import("../components/canvas/Computers"));
+
 const Hero = () => {
+  const [showCanvas, setShowCanvas] = useState(false);
+
+  useEffect(() => {
+    const section = document.getElementById("hero-section");
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowCanvas(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center items-center container pt-[100px] pb-10 md:pb-0" aria-label="Hero section">
+    <section
+      id="hero-section"
+      className="relative w-full min-h-screen flex flex-col justify-center items-center container pt-[100px] pb-10 md:pb-0"
+      aria-label="Hero section"
+    >
       <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-5">
         {/* Left side vertical accent line */}
         <div className="hidden md:flex flex-col justify-center items-center mt-[12px]">
@@ -39,7 +64,10 @@ const Hero = () => {
           </motion.h1>
 
           {/* Animated Role Titles */}
-          <h2 className="relative text-gray-200 font-bold text-xl sm:text-xl md:text-2xl lg:text-[28px] mt-8 w-full h-[1.8em]">
+          <h2
+            className="relative font-bold text-xl sm:text-xl md:text-2xl lg:text-[28px] mt-8 w-full h-[1.8em]"
+            style={{ color: "var(--text-primary)" }}
+          >
             <span className="text-secondary font-normal">I'm&nbsp;</span>
             <span
               style={{ "--i": 0 }}
@@ -83,11 +111,15 @@ const Hero = () => {
             className="sm:text-base text-[15px] text-secondary tracking-wide mt-4 max-w-[460px] leading-relaxed"
           >
             BSc CSE student at{" "}
-            <span className="text-white font-semibold">University of Asia Pacific</span>,
-            trained at{" "}
-            <span className="text-white font-semibold">Creative IT Institute</span> in MERN
-            Stack development. I build modern, scalable web apps and love solving
-            real-world problems with clean code.
+            <span className="text-white font-semibold">
+              University of Asia Pacific
+            </span>
+            , trained at{" "}
+            <span className="text-white font-semibold">
+              Creative IT Institute
+            </span>{" "}
+            in MERN Stack development. I build modern, scalable web apps and
+            love solving real-world problems with clean code.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -139,7 +171,11 @@ const Hero = () => {
 
         {/* Right 3D Model - Hidden on Mobile/Tablet */}
         <div className="hidden md:block flex-2 w-full md:w-[700px] h-[300px] md:h-[500px] lg:h-[600px] relative">
-          <ComputersCanvas />
+          {showCanvas ? (
+            <Suspense fallback={null}>
+              <ComputersCanvas />
+            </Suspense>
+          ) : null}
         </div>
       </div>
 
@@ -154,7 +190,8 @@ const Hero = () => {
                 repeat: Infinity,
                 repeatType: "loop",
               }}
-              className="w-2.5 h-2.5 rounded-full bg-secondary mb-1"
+              className="w-2.5 h-2.5 rounded-full mb-1"
+              style={{ backgroundColor: "var(--scroll-dot)" }}
             />
           </div>
         </a>
