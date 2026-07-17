@@ -8,8 +8,8 @@ const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Media query for mobile/tablet screens (max-width: 768px)
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    // Media query for mobile/tablet screens (max-width: 48rem)
+    const mediaQuery = window.matchMedia("(max-width: 48rem)");
 
     // Set initial value
     setIsMobile(mediaQuery.matches);

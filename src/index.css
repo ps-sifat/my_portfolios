@@ -11,11 +11,12 @@
     --background-image-hero-pattern: url('/src/assets/herobg.png');
     --font-poppins: "Poppins", sans-serif;
     /* Custom Responsive Breakpoints */
-    --breakpoint-xs: 450px;
-    --breakpoint-sm: 481px;
-    --breakpoint-md: 769px;
-    --breakpoint-lg: 1025px;
-    --breakpoint-xl: 1441px;
+    --breakpoint-xs: 28.125rem;
+    --breakpoint-sm: 40rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 64rem;
+    --breakpoint-xl: 80rem;
+    --breakpoint-2xl: 96rem;
 }
 
 body {
@@ -224,20 +225,24 @@ html {
     margin-inline: auto;
     padding-inline: 1rem;
 
-    @media(width>=640px) {
-        max-width: 640px;
+    @media (width >= 40rem) {
+        max-width: 40rem;
     }
 
-    @media(width>=768px) {
-        max-width: 768px;
+    @media (width >= 48rem) {
+        max-width: 48rem;
     }
 
-    @media(width>=1024px) {
-        max-width: 1024px;
+    @media (width >= 64rem) {
+        max-width: 64rem;
     }
 
-    @media(width>=1400px) {
-        max-width: 1400px;
+    @media (width >= 80rem) {
+        max-width: 80rem;
+    }
+
+    @media (width >= 96rem) {
+        max-width: 96rem;
     }
 }
 
@@ -495,7 +500,7 @@ html {
     opacity: 1;
 }
 
-@media (min-width: 640px) {
+@media (width >= 40rem) {
     .animated-button {
         padding: 8px 36px;
         font-size: 16px;
