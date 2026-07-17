@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @theme {
     --color-primary: #050816;
     --color-secondary: #aaa6c3;
@@ -118,6 +119,7 @@ body {
     from {
         clip-path: circle(0px at var(--theme-cx) var(--theme-cy));
     }
+
     to {
         clip-path: circle(var(--theme-r) at var(--theme-cx) var(--theme-cy));
     }
@@ -217,18 +219,23 @@ html {
 }
 
 @import "tailwindcss";
+
 @utility container {
     margin-inline: auto;
     padding-inline: 1rem;
+
     @media(width>=640px) {
         max-width: 640px;
     }
+
     @media(width>=768px) {
         max-width: 768px;
     }
+
     @media(width>=1024px) {
         max-width: 1024px;
     }
+
     @media(width>=1400px) {
         max-width: 1400px;
     }
@@ -250,15 +257,18 @@ html {
     0% {
         opacity: 0;
     }
+
     5%,
     25% {
         opacity: 1;
     }
+
     /* visible during typing/hold */
     26%,
     100% {
         opacity: 0;
     }
+
     /* hide */
 }
 
@@ -278,25 +288,30 @@ html {
 }
 
 @keyframes typing-cycle {
+
     0%,
     5% {
         width: 0;
     }
+
     /* wait */
     10%,
     20% {
         width: 100%;
     }
+
     /* typing */
     21%,
     25% {
         width: 100%;
     }
+
     /* hold full */
     26%,
     100% {
         width: 0;
     }
+
     /* erase */
 }
 
@@ -488,29 +503,128 @@ html {
 }
 
 @keyframes mulShdSpin {
+
     0%,
     100% {
         box-shadow: 0em -2.6em 0em 0em #ffffff, 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.5), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
     }
+
     12.5% {
         box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7), 1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
     }
+
     25% {
         box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #ffffff, 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
     }
+
     37.5% {
         box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5), 2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #ffffff, 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
     }
+
     50% {
         box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.5), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #ffffff, -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
     }
+
     62.5% {
         box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5), 0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #ffffff, -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
     }
+
     75% {
         box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.5), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff, -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
     }
+
     87.5% {
         box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+    }
+}
+
+
+/* ===== OPTIMIZED LOADER ANIMATIONS ===== */
+
+
+/* GPU-Accelerated animations for smooth performance */
+
+.loader-ring {
+    @apply absolute rounded-full border-4 border-transparent;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.loader-ring-outer {
+    @apply inset-0 border-t-[#915eff] border-r-[#915eff];
+    animation: spin-clockwise 1s linear infinite;
+}
+
+.loader-ring-middle {
+    @apply inset-2 border-b-[#0ff];
+    animation: spin-counter 1.5s linear infinite;
+}
+
+.loader-dot {
+    @apply inline-block w-1 h-1 mx-0.5 bg-[#915eff] rounded-full;
+    animation: bounce-smooth 1.4s cubic-bezier(0.22, 0.68, 0.55, 0.77) infinite;
+    animation-delay: var(--dot-delay, 0s);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.loader-progress {
+    @apply h-full bg-gradient-to-r from-[#915eff] to-[#0ff] rounded-full;
+    animation: progress-smooth 2s ease-in-out infinite;
+    will-change: width;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes spin-clockwise {
+    from {
+        transform: rotate(0deg) translateZ(0);
+    }
+
+    to {
+        transform: rotate(360deg) translateZ(0);
+    }
+}
+
+@keyframes spin-counter {
+    from {
+        transform: rotate(360deg) translateZ(0);
+    }
+
+    to {
+        transform: rotate(0deg) translateZ(0);
+    }
+}
+
+@keyframes bounce-smooth {
+
+    0%,
+    100% {
+        transform: translateY(0) translateZ(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-8px) translateZ(0);
+        opacity: 0.8;
+    }
+}
+
+@keyframes progress-smooth {
+    0% {
+        width: 0%;
+        opacity: 0.6;
+    }
+
+    50% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 1;
     }
 }

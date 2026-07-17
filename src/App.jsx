@@ -18,16 +18,17 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Optimized loader timing: 1s for smooth transition
     const timer = window.setTimeout(() => {
       setIsLoading(false);
-    }, 1100);
+    }, 1000);
 
     return () => window.clearTimeout(timer);
   }, []);
 
   return (
     <BrowserRouter>
-      {isLoading ? <Loader /> : null}
+      {isLoading && <Loader />}
       <div className="relative z-0 bg-primary">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
           <Navbar />
