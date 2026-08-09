@@ -22,32 +22,33 @@ import {
 } from "../assets";
 
 export const navLinks = [
-  { id: "about",      title: "About"      },
-  { id: "experience", title: "Training"   },
-  { id: "skills",     title: "Skills"     },
-  { id: "projects",   title: "Projects"   },
+  { id: "about", title: "About" },
+  { id: "experience", title: "Training" },
+  { id: "skills", title: "Skills" },
+  { id: "projects", title: "Projects" },
   { id: "hackathons", title: "Hackathons" },
-  { id: "education",  title: "Education"  },
-  { id: "contact",    title: "Contact"    },
+  { id: "education", title: "Education" },
+  { id: "feedbacks", title: "Testimonials" },
+  { id: "contact", title: "Contact" },
 ];
 
 const services = [
-  { title: "Full Stack Developer",  icon: web     },
-  { title: "MERN Stack Developer",  icon: mobile  },
-  { title: "Frontend Developer",    icon: backend  },
-  { title: "Problem Solver",        icon: creator  },
+  { title: "Full Stack Developer", icon: web },
+  { title: "MERN Stack Developer", icon: mobile },
+  { title: "Frontend Developer", icon: backend },
+  { title: "Problem Solver", icon: creator },
 ];
 
 const technologies = [
-  { name: "HTML 5",       icon: html       },
-  { name: "CSS 3",        icon: css        },
-  { name: "JavaScript",   icon: javascript },
-  { name: "React JS",     icon: reactjs    },
-  { name: "Tailwind CSS", icon: tailwind   },
-  { name: "Node JS",      icon: nodejs     },
-  { name: "MongoDB",      icon: mongodb    },
-  { name: "git",          icon: git        },
-  { name: "figma",        icon: figma      },
+  { name: "HTML 5", icon: html },
+  { name: "CSS 3", icon: css },
+  { name: "JavaScript", icon: javascript },
+  { name: "React JS", icon: reactjs },
+  { name: "Tailwind CSS", icon: tailwind },
+  { name: "Node JS", icon: nodejs },
+  { name: "MongoDB", icon: mongodb },
+  { name: "git", icon: git },
+  { name: "figma", icon: figma },
 ];
 
 // Real training & certifications
@@ -92,7 +93,35 @@ const experiences = [
   },
 ];
 
-const testimonials = [];
+const testimonials = [
+  {
+    testimonial:
+      "Sifat demonstrated exceptional problem-solving ability and attention to detail during the MERN Stack Development program. His Food Panda project and hotel booking app showed a strong grasp of modern React component design and responsive architecture.",
+    name: "Shafiul Islam",
+    designation: "Senior Lead Instructor",
+    company: "Creative IT Institute",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    rating: 5,
+  },
+  {
+    testimonial:
+      "Collaborating with Sifat on our Food Panda web contest project was a great experience. His mastery over UI layout, CSS grid/flexbox, and modern frontend styling helped our team build an impressive landing page.",
+    name: "Tanvir Ahmed",
+    designation: "Web Developer & Teammate",
+    company: "Creative IT Web Contest",
+    image: "https://randomuser.me/api/portraits/men/46.jpg",
+    rating: 5,
+  },
+  {
+    testimonial:
+      "Sifat brings intense passion and focus to hackathons. During the SUST CSE Carnival 2026 AI Hackathon, his fast prototyping skills in React and smooth component integrations enabled Team ASOFT to build a solid solution.",
+    name: "Rahim Uddin",
+    designation: "Team Lead @ ASOFT",
+    company: "SUST AI Hackathon 2026",
+    image: "https://randomuser.me/api/portraits/men/68.jpg",
+    rating: 5,
+  },
+];
 
 // ── Real Projects with Case Studies ──
 const projects = [
@@ -101,9 +130,9 @@ const projects = [
     description:
       'While learning web design at "Creative IT Institute", the institute organized a web contest for us. From our group we designed "Food Panda" app landing page for the web contest. We were 2 people who built the whole web page.',
     tags: [
-      { name: "html",       color: "orange-text-gradient", percent: 60 },
-      { name: "css",        color: "blue-text-gradient",   percent: 30 },
-      { name: "javascript", color: "green-text-gradient",  percent: 10 },
+      { name: "html", color: "orange-text-gradient", percent: 60 },
+      { name: "css", color: "blue-text-gradient", percent: 30 },
+      { name: "javascript", color: "green-text-gradient", percent: 10 },
     ],
     image: foodpanda,
     source_code_link: "https://github.com/ps-sifat/Food-Panda-app-landing-page-for-Web-Contest-Creative-IT-Institute-.git",
@@ -123,9 +152,9 @@ const projects = [
     description:
       "Developed a responsive Hotel Booking web application to strengthen my React, Tailwind CSS, and responsive design skills. Focused on reusable components, clean UI, and modern frontend development practices.",
     tags: [
-      { name: "react",      color: "blue-text-gradient",  percent: 70 },
-      { name: "tailwind",   color: "green-text-gradient", percent: 20 },
-      { name: "javascript", color: "pink-text-gradient",  percent: 10 },
+      { name: "react", color: "blue-text-gradient", percent: 70 },
+      { name: "tailwind", color: "green-text-gradient", percent: 20 },
+      { name: "javascript", color: "pink-text-gradient", percent: 10 },
     ],
     image: hotelapp,
     source_code_link: "https://github.com/ps-sifat/Hotel-Booking-App.git",
@@ -145,9 +174,9 @@ const projects = [
     description:
       "A modern QR code generator built with React and Vite. Users can generate QR codes from text or URLs, customize colors, adjust size, copy content, and download the QR code as a PNG image.",
     tags: [
-      { name: "react",      color: "blue-text-gradient",  percent: 80 },
-      { name: "css",        color: "pink-text-gradient",  percent: 15 },
-      { name: "javascript", color: "green-text-gradient", percent: 5  },
+      { name: "react", color: "blue-text-gradient", percent: 80 },
+      { name: "css", color: "pink-text-gradient", percent: 15 },
+      { name: "javascript", color: "green-text-gradient", percent: 5 },
     ],
     image: qrcode,
     source_code_link: "https://github.com/ps-sifat/QR-code-generator.git",

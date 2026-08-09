@@ -10,6 +10,7 @@ import {
   Navbar,
   Tech,
   Works,
+  Feedbacks,
   SectionWrapper,
   Loader,
 } from "./components";
@@ -51,6 +52,9 @@ const App = () => {
         </SectionWrapper>
         <SectionWrapper id="education">
           <Education />
+        </SectionWrapper>
+        <SectionWrapper id="feedbacks">
+          <Feedbacks />
         </SectionWrapper>
         <SectionWrapper id="contact" showStars={true}>
           <Contact />

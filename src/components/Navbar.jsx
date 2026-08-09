@@ -108,9 +108,8 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`w-full flex items-center justify-center fixed bg-transparent top-0 left-0 z-20 sm:px-16 px-6 transition-all duration-300 ${
-          isScrolled ? "py-2.5 md:py-3 glass-navbar shadow-lg" : "py-4 md:py-5"
-        }`}
+        className={`w-full flex items-center justify-center fixed bg-transparent top-0 left-0 z-20 sm:px-16 px-6 transition-all duration-300 ${isScrolled ? "py-2.5 md:py-3 glass-navbar shadow-lg" : "py-4 md:py-5"
+          }`}
       >
         <div className="w-full flex justify-between items-center container !py-4">
           <Link
@@ -133,11 +132,10 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <li
                   key={link.id}
-                  className={`relative px-4 py-1.5 rounded-full cursor-pointer text-[15px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${
-                    active === link.title
+                  className={`relative px-4 py-1.5 rounded-full cursor-pointer text-[15px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${active === link.title
                       ? "text-white bg-[#915eff]"
                       : "text-secondary hover:text-white"
-                  }`}
+                    }`}
                   onClick={() => setActive(link.title)}
                 >
                   <a
@@ -167,21 +165,19 @@ const Navbar = () => {
               onClick={() => setToggle(!toggle)}
             />
             <div
-              className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl border border-[var(--border-subtle)] ${
-                !toggle
+              className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl border border-[var(--border-subtle)] ${!toggle
                   ? "hidden"
                   : "flex justify-center py-4 items-center animate-fade-in"
-              }`}
+                }`}
             >
               <ul className="list-none flex justify-end items-stretch flex-col gap-3 w-full">
                 {navLinks.map((link) => (
                   <li
                     key={link.id}
-                    className={`relative px-4 py-2 rounded-xl cursor-pointer text-[14px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${
-                      active === link.title
+                    className={`relative px-4 py-2 rounded-xl cursor-pointer text-[14px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${active === link.title
                         ? "text-white bg-[#915eff]"
                         : "text-secondary hover:text-white"
-                    }`}
+                      }`}
                     onClick={() => {
                       setToggle(!toggle);
                       setActive(link.title);
