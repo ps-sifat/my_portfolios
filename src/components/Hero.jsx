@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { github } from "../assets";
 import { FaDownload, FaMapMarkerAlt } from "react-icons/fa";
-import resume from "../assets/cv/SifatResume.pdf";
+import resume from "../../resume.pdf";
 
 const ComputersCanvas = lazy(() => import("../components/canvas/Computers"));
 
@@ -30,7 +30,7 @@ const Hero = () => {
   return (
     <section
       id="hero-section"
-      className="relative w-full min-h-screen flex flex-col justify-center items-center container pt-[100px] pb-10 md:pb-0"
+      className="container relative w-full min-h-screen flex flex-col justify-center items-center container pt-[100px] pb-10 md:pb-0"
       aria-label="Hero section"
     >
       <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-5">

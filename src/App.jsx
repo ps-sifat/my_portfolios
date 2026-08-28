@@ -53,9 +53,9 @@ const App = () => {
         <SectionWrapper id="education">
           <Education />
         </SectionWrapper>
-        <SectionWrapper id="feedbacks">
+        {/* <SectionWrapper id="feedbacks">
           <Feedbacks />
-        </SectionWrapper>
+        </SectionWrapper> */}
         <SectionWrapper id="contact" showStars={true}>
           <Contact />
         </SectionWrapper>
