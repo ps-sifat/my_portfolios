@@ -20,6 +20,7 @@ import {
   qrcode,
   creative_it,
 } from "../assets";
+import etrailglobal from "../assets/etrailglobal.png";
 
 export const navLinks = [
   { id: "about", title: "About" },
@@ -125,6 +126,27 @@ const testimonials = [
 
 // ── Real Projects with Case Studies ──
 const projects = [
+  {
+    name: "Etrail Global",
+    description:
+      "My first live project — an e-commerce website where I contributed to the frontend work and helped build the customer-facing shopping experience.",
+    tags: [
+      { name: "html", color: "orange-text-gradient", percent: 35 },
+      { name: "css", color: "blue-text-gradient", percent: 35 },
+      { name: "javascript", color: "green-text-gradient", percent: 30 },
+    ],
+    image: etrailglobal,
+    source_code_link: "https://github.com/debodipto/Etrail_Global.git",
+    live_link: "https://www.etrailglobal.com/",
+    problem:
+      "The project needed a polished, accessible frontend for a live e-commerce marketplace and its customer-facing shopping experience.",
+    challenge:
+      "Creating a responsive interface that feels clear and trustworthy across product discovery, shopping, and supporting marketplace content.",
+    solution:
+      "Contributed to the frontend implementation and UI refinement, focusing on responsive layouts, visual consistency, and a smooth browsing experience.",
+    outcome:
+      "Etrail Global is now live, and it became my first live project contribution as a frontend developer.",
+  },
   {
     name: "Food Panda Landing Page",
     description:
