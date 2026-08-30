@@ -18,7 +18,7 @@ import {
   SiHtml5,
 } from "react-icons/si";
 import { styles } from "../style";
-import { projects } from "../constants";
+import { projects } from "./ProjectModal";
 import { fadeIn, textVariant } from "../utils/motion";
 import ProjectModal from "./ProjectModal";
 
@@ -43,6 +43,7 @@ const ProjectCard = ({
   image,
   source_code_link,
   live_link,
+  showLiveBadge,
   onCaseStudy,
   project,
 }) => {
@@ -86,23 +87,27 @@ const ProjectCard = ({
           />
 
           {/* Green Pulse LIVE Badge */}
-          <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-green-500/30">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">
-              LIVE
-            </span>
-          </div>
+          {showLiveBadge && (
+            <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-green-500/30">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">
+                LIVE
+              </span>
+            </div>
+          )}
 
           {/* Deployed Label */}
-          <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-blue-500/30">
-            <FaCheckCircle className="text-blue-400 text-[10px]" />
-            <span className="text-[9px] font-medium text-gray-200 uppercase tracking-wide">
-              Deployed / Active
-            </span>
-          </div>
+          {live_link && (
+            <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-blue-500/30">
+              <FaCheckCircle className="text-blue-400 text-[10px]" />
+              <span className="text-[9px] font-medium text-gray-200 uppercase tracking-wide">
+                Deployed / Active
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Project Details */}

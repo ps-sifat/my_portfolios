@@ -3,7 +3,35 @@ import { motion } from "framer-motion";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 import { styles } from "../style";
 import { fadeIn, textVariant } from "../utils/motion";
-import { testimonials } from "../constants";
+const testimonials = [
+  {
+    testimonial:
+      "Sifat demonstrated exceptional problem-solving ability and attention to detail during the MERN Stack Development program. His Food Panda project and hotel booking app showed a strong grasp of modern React component design and responsive architecture.",
+    name: "Shafiul Islam",
+    designation: "Senior Lead Instructor",
+    company: "Creative IT Institute",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    rating: 5,
+  },
+  {
+    testimonial:
+      "Collaborating with Sifat on our Food Panda web contest project was a great experience. His mastery over UI layout, CSS grid/flexbox, and modern frontend styling helped our team build an impressive landing page.",
+    name: "Tanvir Ahmed",
+    designation: "Web Developer & Teammate",
+    company: "Creative IT Web Contest",
+    image: "https://randomuser.me/api/portraits/men/46.jpg",
+    rating: 5,
+  },
+  {
+    testimonial:
+      "Sifat brings intense passion and focus to hackathons. During the SUST CSE Carnival 2026 AI Hackathon, his fast prototyping skills in React and smooth component integrations enabled Team ASOFT to build a solid solution.",
+    name: "Rahim Uddin",
+    designation: "Team Lead @ ASOFT",
+    company: "SUST AI Hackathon 2026",
+    image: "https://randomuser.me/api/portraits/men/68.jpg",
+    rating: 5,
+  },
+];
 
 const FeedbackCard = ({
   index,
@@ -26,7 +54,10 @@ const FeedbackCard = ({
         </div>
         <div className="flex gap-1">
           {[...Array(rating)].map((_, i) => (
-            <FaStar key={i} className="text-amber-400 text-sm filter drop-shadow-[0_0_4px_rgba(251,191,36,0.5)]" />
+            <FaStar
+              key={i}
+              className="text-amber-400 text-sm filter drop-shadow-[0_0_4px_rgba(251,191,36,0.5)]"
+            />
           ))}
         </div>
       </div>
@@ -44,7 +75,8 @@ const FeedbackCard = ({
           <span className="text-[#915eff]">@</span> {name}
         </h4>
         <p className="mt-0.5 text-secondary text-[12px] font-medium truncate">
-          {designation} of <span className="text-purple-300 font-semibold">{company}</span>
+          {designation} of{" "}
+          <span className="text-purple-300 font-semibold">{company}</span>
         </p>
       </div>
 

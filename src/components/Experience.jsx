@@ -8,8 +8,49 @@ import { motion } from "framer-motion";
 import "react-vertical-timeline-component/style.min.css";
 
 import { styles } from "../style";
-import { experiences } from "../constants";
 import { textVariant } from "../utils/motion";
+import { creative_it, creator } from "../assets";
+
+const experiences = [
+  {
+    title: "Professional MERN Stack Development",
+    company_name: "Creative IT Institute",
+    icon: creative_it,
+    iconBg: "#383E56",
+    date: "Nov 2023 – Nov 2024",
+    points: [
+      "Completed intensive full-stack training covering React.js, Node.js, Express.js, and MongoDB.",
+      "Built production-ready REST APIs with JWT authentication and secure CORS handling.",
+      "Developed multiple full-stack projects including hotel booking, library, and food ordering systems.",
+      "Learned deployment strategies using Vercel and modern CI/CD workflows.",
+    ],
+  },
+  {
+    title: "Professional Web Design",
+    company_name: "Creative IT Institute",
+    icon: creative_it,
+    iconBg: "#E6DEDD",
+    date: "Aug 2023 – Nov 2023",
+    points: [
+      "Mastered modern UI/UX principles, typography, color theory, and responsive layouts.",
+      "Practiced advanced CSS techniques including Flexbox, Grid, and CSS animations.",
+      "Worked with design tools like Figma, Adobe Photoshop, and Adobe Illustrator.",
+      "Built pixel-perfect, mobile-first interfaces with exceptional cross-browser compatibility.",
+    ],
+  },
+  {
+    title: "Software Application Course",
+    company_name: "Postal Academy",
+    icon: creator,
+    iconBg: "#383E56",
+    date: "2022",
+    points: [
+      "Covered fundamentals of software development lifecycle and application design.",
+      "Practiced MS Office Suite, database basics, and computer networking fundamentals.",
+      "Gained hands-on experience with software tools used in professional environments.",
+    ],
+  },
+];
 
 const ExperienceCard = ({ experience }) => {
   return (

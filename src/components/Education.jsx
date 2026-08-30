@@ -67,8 +67,7 @@ const EducationCard = ({ edu }) => {
       }
       iconStyle={{
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        
         background: "#915eff",
         boxShadow: "0 0 0 4px #915eff, inset 0 2px 0 rgba(0,0,0,0.06)",
       }}

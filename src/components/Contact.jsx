@@ -135,7 +135,7 @@ const Contact = () => {
     {
       icon: FaLinkedin,
       text: "Md. Sifatul Islam",
-      href: "https://linkedin.com/in/md-sifatul-islam",
+      href: "https://www.linkedin.com/in/md-sifatul-islam-2357bd/",
       color: "text-blue-400",
     },
     {

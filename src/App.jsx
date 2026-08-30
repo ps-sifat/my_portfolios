@@ -47,7 +47,7 @@ const App = () => {
         <SectionWrapper id="works">
           <Works />
         </SectionWrapper>
-        <SectionWrapper id="hackathons">
+        <SectionWrapper id="achievements">
           <Hackathons />
         </SectionWrapper>
         <SectionWrapper id="education">

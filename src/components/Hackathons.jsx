@@ -11,7 +11,62 @@ import {
 } from "react-icons/fa";
 import { styles } from "../style";
 import { fadeIn, textVariant } from "../utils/motion";
-import { hackathons, achievements } from "../constants";
+
+const hackathons = [
+  {
+    event: "SUST CSE Carnival 2026 AI Hackathon",
+    team: "ASOFT",
+    role: "Participant",
+    date: "2026",
+    description:
+      "Participated in one of Bangladesh's largest university AI hackathons at SUST. Collaborated with team ASOFT to design and build an AI-assisted FinTech solution — featuring smart budget analytics and financial insights — under strict time constraints.",
+    tags: ["AI", "FinTech", "Hackathon", "Team Work"],
+    result: "Participated",
+  },
+];
+
+const achievements = [
+  {
+    title: "President Scout Award",
+    year: "2018",
+    description:
+      "Received the prestigious President Scout Award — the highest recognition in the Bangladesh Scout movement.",
+    icon: "🏆",
+    credentialUrl: null,
+  },
+  {
+    title: "MERN Stack Training Completed",
+    year: "2024",
+    description:
+      "Successfully completed Professional MERN Stack Development at Creative IT Institute.",
+    icon: "🎓",
+    credentialUrl: null,
+  },
+  {
+    title: "Web Design Training Completed",
+    year: "2023",
+    description:
+      "Completed Professional Web Design training with a focus on UI/UX and modern CSS.",
+    icon: "🎨",
+    credentialUrl: null,
+  },
+  {
+    title: "Built Multiple Full Stack Projects",
+    year: "2023–2026",
+    description:
+      "Independently designed and deployed 5+ full-stack web applications from concept to production.",
+    icon: "🚀",
+    credentialUrl: null,
+  },
+  {
+    title: "Hackathon Participant",
+    year: "2026",
+    description:
+      "Competed in the SUST CSE Carnival 2026 AI Hackathon with team ASOFT.",
+    icon: "⚡",
+    credentialUrl: null,
+  },
+];
 
 const HackathonCard = ({
   event,
@@ -141,14 +196,16 @@ const AchievementItem = ({
 const Hackathons = () => {
   return (
     <section
-      id="hackathons"
+      id="achievements"
       className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
     >
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>
           Competitive Coding & Achievements
         </p>
-        <h2 className={styles.sectionHeadText}>Hackathons &amp; Activities.</h2>
+        <h2 className={styles.sectionHeadText}>
+          Achievements &amp; Activities.
+        </h2>
       </motion.div>
 
       <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -159,7 +216,7 @@ const Hackathons = () => {
             className="text-white font-bold text-[22px] tracking-wide flex items-center gap-2"
           >
             <FaLightbulb className="text-[#915eff] filter drop-shadow-[0_0_8px_rgba(145,94,255,0.5)]" />
-            <span>Hackathons</span>
+            <span>Achievements</span>
           </motion.h3>
 
           <div className="grid grid-cols-1 gap-6">
