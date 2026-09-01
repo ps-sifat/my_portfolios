@@ -23,6 +23,40 @@ const hackathons = [
     tags: ["AI", "FinTech", "Hackathon", "Team Work"],
     result: "Participated",
   },
+  {
+    event: "DEVFUSION Mini Hackathon",
+    team: "ASOFT",
+    role: "Participant",
+    date: "2026",
+    description:
+      "Participated in the DEVFUSION Mini Hackathon organized by the Software & Hardware Club, CSE, University of Asia Pacific. Collaborated with team ASOFT to develop a practical software solution under time constraints, gaining hands-on experience in problem-solving, teamwork, rapid development, and presenting an innovative solution.",
+    tags: ["Hackathon", "Web Development", "Problem Solving", "Team Work"],
+    result: "Participated",
+  },
+  {
+    event: "DUET CSE Carnival 2026 AI Hackathon",
+    role: "Participant",
+    date: "27 June 2026",
+    description:
+      "Participated in the AI Hackathon at DUET CSE Carnival 2026, held at Dhaka University of Engineering & Technology (DUET), Gazipur. Explored real-world applications of Artificial Intelligence while collaborating with fellow participants and learning through hands-on problem-solving and innovation.",
+    tags: [
+      "AI",
+      "AI Hackathon",
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Hackathon",
+    ],
+    result: "Participated",
+  },
+  {
+    event: "BUP CSE Tech Carnival 2025",
+    role: "Participant",
+    date: "2025",
+    description:
+      "Participated in the Hackathon organized during DSI presents BUP CSE Tech Carnival 2025 by Bangladesh University of Professionals (BUP). Collaborated in a team environment to develop innovative solutions, strengthen problem-solving skills, and gain hands-on experience in software development and teamwork.",
+    tags: ["Hackathon", "Software Development", "Problem Solving", "Team Work"],
+    result: "Participated",
+  },
 ];
 
 const achievements = [
@@ -100,15 +134,17 @@ const HackathonCard = ({
           Role: {role}
         </p>
 
-        <div className="flex flex-wrap gap-4 text-secondary text-[13px] mb-4 bg-white/5 p-3 rounded-lg border border-white/5">
-          <div className="flex items-center gap-1.5">
-            <FaUsers className="text-[#915eff]" />
-            <span>
-              Team:{" "}
-              <b className="text-[var(--text-primary)] font-medium">{team}</b>
-            </span>
+        {team && (
+          <div className="flex flex-wrap gap-4 text-secondary text-[13px] mb-4 bg-white/5 p-3 rounded-lg border border-white/5">
+            <div className="flex items-center gap-1.5">
+              <FaUsers className="text-[#915eff]" />
+              <span>
+                Team:{" "}
+                <b className="text-[var(--text-primary)] font-medium">{team}</b>
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         <p className="text-secondary text-[14px] leading-relaxed mb-6">
           {description}

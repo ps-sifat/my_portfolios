@@ -840,7 +840,7 @@ html {
 }
 
 /* Gallery frame */
-:root.light #gallery > div:last-child {
+:root.light #gallery .gallery-canvas-frame {
     background: var(--bg-card) !important;
     border-color: transparent !important;
     box-shadow: var(--neo-raised) !important;
