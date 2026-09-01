@@ -30,7 +30,7 @@ const Hero = () => {
   return (
     <section
       id="hero-section"
-      className="container relative w-full min-h-screen flex flex-col justify-center items-center container pt-[100px] pb-10 md:pb-0"
+      className="site-container relative w-full min-h-screen flex flex-col justify-center items-center pt-[100px] pb-10 md:pb-0"
       aria-label="Hero section"
     >
       <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-5">

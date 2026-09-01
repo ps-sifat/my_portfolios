@@ -221,7 +221,7 @@ html {
 
 @import "tailwindcss";
 
-@utility container {
+@utility site-container {
     margin-inline: auto;
     padding-inline: 1rem;
 

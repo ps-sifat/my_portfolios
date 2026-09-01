@@ -128,7 +128,7 @@ const Navbar = () => {
         className={`w-full flex items-center justify-center fixed bg-transparent top-0 left-0 z-20 sm:px-16 px-6 transition-all duration-300 ${isScrolled ? "py-2.5 md:py-3 glass-navbar shadow-lg" : "py-4 md:py-5"
           }`}
       >
-        <div className="w-full flex justify-between items-center container !py-4">
+        <div className="w-full flex justify-between items-center site-container !py-4">
           <Link
             to="/"
             className="flex items-center gap-2"
