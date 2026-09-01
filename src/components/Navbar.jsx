@@ -149,7 +149,7 @@ const Navbar = () => {
               {navbarLinks.map((link) => (
                 <li
                   key={link.id}
-                  className={`relative px-4 py-1.5 rounded-full cursor-pointer text-[15px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${active === link.title
+                  className={`navbar-link relative px-4 py-1.5 rounded-full cursor-pointer text-[15px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${active === link.title
                     ? "text-white bg-[#915eff]"
                     : "text-secondary hover:text-white"
                     }`}
@@ -191,7 +191,7 @@ const Navbar = () => {
                 {navbarLinks.map((link) => (
                   <li
                     key={link.id}
-                    className={`relative px-4 py-2 rounded-xl cursor-pointer text-[14px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${active === link.title
+                    className={`navbar-link relative px-4 py-2 rounded-xl cursor-pointer text-[14px] font-medium tracking-wide transition-all duration-300 overflow-hidden group flex items-center justify-center ${active === link.title
                       ? "text-white bg-[#915eff]"
                       : "text-secondary hover:text-white"
                       }`}

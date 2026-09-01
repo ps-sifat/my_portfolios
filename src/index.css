@@ -667,6 +667,21 @@ html {
     -webkit-backdrop-filter: none !important;
 }
 
+/* Navbar links: keep the purple hover pill readable in light mode. */
+:root.light .navbar-link:hover,
+:root.light .navbar-link:focus-within,
+:root.light .navbar-link:hover > a,
+:root.light .navbar-link:focus-within > a,
+:root.light .navbar-link.text-white,
+:root.light .navbar-link.text-white > a {
+    color: #ffffff !important;
+}
+
+:root.light .navbar-link:hover > span,
+:root.light .navbar-link:focus-within > span {
+    background-color: var(--accent) !important;
+}
+
 :root.light .glass-input {
     background: var(--bg-input) !important;
     border-color: transparent !important;
