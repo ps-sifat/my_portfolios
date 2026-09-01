@@ -10,9 +10,9 @@ import {
   Navbar,
   Tech,
   Works,
-  Feedbacks,
   SectionWrapper,
   Loader,
+  Gallery,
 } from "./components";
 
 const App = () => {
@@ -53,9 +53,9 @@ const App = () => {
         <SectionWrapper id="education">
           <Education />
         </SectionWrapper>
-        {/* <SectionWrapper id="feedbacks">
-          <Feedbacks />
-        </SectionWrapper> */}
+        <SectionWrapper id="gallery">
+          <Gallery />
+        </SectionWrapper>
         <SectionWrapper id="contact" showStars={true}>
           <Contact />
         </SectionWrapper>

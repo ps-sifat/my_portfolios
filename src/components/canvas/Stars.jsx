@@ -1,9 +1,11 @@
 import React, { useState, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
+import { useTheme } from "../../context/ThemeContext";
 
 const Stars = (props) => {
   const ref = useRef();
+  const { isDark } = useTheme();
   
   const [sphere] = useState(() => {
     const arr = new Float32Array(5000 * 3);
@@ -32,8 +34,8 @@ const Stars = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color="#f3f3f3"
-          size={0.002}
+          color={isDark ? "#f3f3f3" : "#9b8bc4"}
+          size={isDark ? 0.002 : 0.0015}
           sizeAttenuation={true}
           depthWrite={false}
         />
@@ -55,4 +57,4 @@ const StarsCanvas = () => {
   );
 };
 
-export default StarsCanvas;
+export default StarsCanvas;

@@ -2,11 +2,18 @@ import React, { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
 import CanvesLoader from "../CanvesLoader";
+import { useTheme } from "../../context/ThemeContext";
 
 const TechGlobe = () => {
   const globeRef = useRef(null);
   const gridRef = useRef(null);
   const ringRef = useRef(null);
+  const { isDark } = useTheme();
+
+  const globeColor = isDark ? "#0d0a21" : "#d6d8e1";
+  const gridColor = isDark ? "#804dee" : "#7c3aed";
+  const ringColor = isDark ? "#00f2fe" : "#8b5cf6";
+  const particleColor = isDark ? "#bf61ff" : "#a78bfa";
 
   useFrame((state, delta) => {
     if (globeRef.current) globeRef.current.rotation.y += delta * 0.15;
@@ -21,15 +28,15 @@ const TechGlobe = () => {
     <group>
       {/* Ambient & Spotlight for depth */}
       <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 3, 5]} intensity={2.5} color="#804dee" />
-      <directionalLight position={[-5, -3, -5]} intensity={1.5} color="#00f2fe" />
-      <pointLight position={[0, 0, 0]} intensity={2} color="#bf61ff" />
+      <directionalLight position={[5, 3, 5]} intensity={2.5} color={gridColor} />
+      <directionalLight position={[-5, -3, -5]} intensity={1.5} color={ringColor} />
+      <pointLight position={[0, 0, 0]} intensity={2} color={particleColor} />
 
       {/* Main Core Sphere */}
       <mesh ref={globeRef} scale={2.5}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshStandardMaterial
-          color="#0d0a21"
+          color={globeColor}
           roughness={0.2}
           metalness={0.9}
           bumpScale={0.05}
@@ -40,7 +47,7 @@ const TechGlobe = () => {
       <mesh ref={gridRef} scale={2.52}>
         <sphereGeometry args={[1.005, 32, 32]} />
         <meshBasicMaterial
-          color="#804dee"
+          color={gridColor}
           wireframe={true}
           transparent={true}
           opacity={0.15}
@@ -50,7 +57,7 @@ const TechGlobe = () => {
       {/* Cyber Orbit Ring */}
       <mesh ref={ringRef} rotation={[Math.PI / 3, 0, 0]} scale={3.3}>
         <torusGeometry args={[1, 0.015, 16, 100]} />
-        <meshBasicMaterial color="#00f2fe" transparent opacity={0.6} />
+        <meshBasicMaterial color={ringColor} transparent opacity={0.6} />
       </mesh>
 
       {/* Node particles orbiting the globe */}
@@ -58,7 +65,7 @@ const TechGlobe = () => {
         <sphereGeometry args={[2.9, 16, 16]} />
         <pointsMaterial
           size={0.03}
-          color="#bf61ff"
+          color={particleColor}
           transparent
           opacity={0.7}
           sizeAttenuation
@@ -97,4 +104,4 @@ const EarthCanvas = () => {
   );
 };
 
-export default EarthCanvas;
+export default EarthCanvas;

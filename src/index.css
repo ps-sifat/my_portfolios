@@ -68,19 +68,19 @@ body {
 /* ===== LIGHT MODE ===== */
 
 :root.light {
-    --bg-primary: #f0f0f8;
-    --bg-secondary: #e4e2f5;
-    --bg-card: rgba(255, 255, 255, 0.75);
-    --bg-card-hover: rgba(145, 94, 255, 0.1);
-    --bg-navbar: rgba(240, 240, 248, 0.75);
-    --bg-input: rgba(255, 255, 255, 0.8);
+    --bg-primary: #e7e9f1;
+    --bg-secondary: #dfe2ec;
+    --bg-card: #e7e9f1;
+    --bg-card-hover: #e1e3ec;
+    --bg-navbar: #e7e9f1;
+    --bg-input: #e7e9f1;
     --text-primary: #1a1730;
     --text-secondary: #4a4768;
     --text-muted: #8b89a0;
-    --border-color: rgba(145, 94, 255, 0.15);
-    --border-navbar: rgba(145, 94, 255, 0.12);
-    --shadow-card: 0px 35px 120px -15px rgba(145, 94, 255, 0.15);
-    --glass-shadow: 0 8px 32px 0 rgba(145, 94, 255, 0.12);
+    --border-color: transparent;
+    --border-navbar: transparent;
+    --shadow-card: 10px 10px 22px #c5c8d2, -10px -10px 22px #ffffff;
+    --glass-shadow: 10px 10px 22px #c5c8d2, -10px -10px 22px #ffffff;
     --accent: #7c3aed;
     --accent-hover: #6d28d9;
     --accent-glow: rgba(124, 58, 237, 0.3);
@@ -91,8 +91,8 @@ body {
     --bg-badge-solid: rgba(0, 0, 0, 0.6);
     --bg-overlay-light: rgba(100, 80, 160, 0.06);
     --bg-overlay-lighter: rgba(100, 80, 160, 0.10);
-    --border-subtle: rgba(100, 80, 160, 0.12);
-    --border-faint: rgba(100, 80, 160, 0.06);
+    --border-subtle: rgba(124, 58, 237, 0.16);
+    --border-faint: rgba(124, 58, 237, 0.08);
     /* Footer */
     --bg-footer: rgba(224, 222, 240, 0.8);
     /* Modal */
@@ -632,4 +632,216 @@ html {
         width: 100%;
         opacity: 1;
     }
+}
+
+/* ========================================================================
+   LIGHT MODE ONLY — neumorphic surfaces
+   Dark mode intentionally has no selectors in this block.
+   ======================================================================== */
+
+:root.light {
+    --neo-raised: 10px 10px 22px #c5c8d2, -10px -10px 22px #ffffff;
+    --neo-raised-small: 6px 6px 12px #c5c8d2, -6px -6px 12px #ffffff;
+    --neo-inset: inset 6px 6px 12px #c5c8d2, inset -6px -6px 12px #ffffff;
+}
+
+:root.light body {
+    background: var(--bg-primary);
+}
+
+/* Shared surfaces: About cards, Training, Skills, Projects, Achievements,
+   Gallery and Contact all use these existing project utility classes. */
+:root.light .glass-card {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+:root.light .glass-navbar {
+    background: var(--bg-navbar) !important;
+    border-bottom-color: transparent !important;
+    box-shadow: 0 8px 18px rgba(197, 200, 210, 0.85), 0 -4px 14px rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+:root.light .glass-input {
+    background: var(--bg-input) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-inset) !important;
+    color: var(--text-primary) !important;
+}
+
+:root.light .glass-input:focus {
+    border-color: rgba(124, 58, 237, 0.35) !important;
+    box-shadow: inset 4px 4px 9px #c5c8d2, inset -4px -4px 9px #ffffff, 0 0 0 3px rgba(124, 58, 237, 0.08) !important;
+}
+
+:root.light .glass-input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* Common translucent chips become soft raised/inset controls. */
+:root.light .bg-white\/5,
+:root.light .bg-white\/10 {
+    background-color: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-inset) !important;
+}
+
+:root.light .border-white\/5,
+:root.light .border-white\/8,
+:root.light .border-white\/10,
+:root.light .border-white\/20 {
+    border-color: transparent !important;
+}
+
+/* Home / Hero */
+:root.light #hero-section .animated-button {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised-small) !important;
+    color: var(--accent) !important;
+}
+
+:root.light #hero-section .animated-button .text {
+    color: var(--accent) !important;
+}
+
+:root.light #hero-section .animated-button:hover {
+    box-shadow: var(--neo-inset) !important;
+    border-radius: 100px;
+}
+
+:root.light #hero-section .animated-button:hover .text {
+    color: var(--text-primary) !important;
+}
+
+:root.light #hero-resume-btn {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised-small) !important;
+    color: var(--text-primary) !important;
+}
+
+:root.light #hero-resume-btn:hover {
+    background: var(--bg-card) !important;
+    box-shadow: var(--neo-inset) !important;
+    border-color: transparent !important;
+}
+
+/* Training and Education timeline cards/icons */
+:root.light .vertical-timeline-element-content {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised) !important;
+    backdrop-filter: none !important;
+}
+
+:root.light .vertical-timeline-element-content-arrow {
+    border-right-color: var(--bg-card) !important;
+    filter: drop-shadow(3px 3px 4px rgba(197, 200, 210, 0.8));
+}
+
+:root.light .vertical-timeline-element-icon {
+    background: var(--accent) !important;
+    box-shadow: 5px 5px 12px #c5c8d2, -5px -5px 12px #ffffff !important;
+}
+
+/* The electric border is a dark-mode accent. The cards underneath retain the
+   neumorphic treatment in light mode without the neon glow. */
+:root.light .eb-glow-1,
+:root.light .eb-glow-2,
+:root.light .eb-background-glow {
+    opacity: 0 !important;
+}
+
+/* Skills carousel fade must match the light surface instead of dark navy. */
+:root.light .logoloop--fade::before,
+:root.light .logoloop--fade::after {
+    background: linear-gradient(to right, var(--bg-primary), transparent) !important;
+}
+
+:root.light .logoloop--fade::after {
+    background: linear-gradient(to left, var(--bg-primary), transparent) !important;
+}
+
+/* Projects */
+:root.light #projects .bg-black\/35,
+:root.light #projects .bg-black\/60,
+:root.light #projects .bg-black\/75 {
+    background-color: rgba(231, 233, 241, 0.9) !important;
+    color: var(--text-primary) !important;
+    backdrop-filter: none !important;
+}
+
+:root.light #projects button {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised-small) !important;
+    color: var(--text-primary) !important;
+}
+
+:root.light #projects button:hover {
+    background: var(--bg-card) !important;
+    box-shadow: var(--neo-inset) !important;
+}
+
+:root.light #projects a.bg-white\/5 {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised-small) !important;
+    color: var(--text-primary) !important;
+}
+
+:root.light #projects a.bg-white\/5:hover {
+    background: var(--bg-card) !important;
+    box-shadow: var(--neo-inset) !important;
+}
+
+/* Achievements */
+:root.light #achievements .bg-purple-500\/10 {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-inset) !important;
+}
+
+:root.light #achievements a[style*="linear-gradient"] {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised-small) !important;
+    color: var(--accent) !important;
+}
+
+:root.light #achievements a[style*="linear-gradient"]:hover {
+    box-shadow: var(--neo-inset) !important;
+}
+
+/* Contact */
+:root.light #contact button[type="submit"] {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised-small) !important;
+    color: var(--accent) !important;
+}
+
+:root.light #contact button[type="submit"]:hover {
+    background: var(--bg-card) !important;
+    box-shadow: var(--neo-inset) !important;
+}
+
+:root.light #contact footer {
+    background: var(--bg-card) !important;
+    border-top-color: transparent !important;
+    box-shadow: 0 -8px 18px rgba(197, 200, 210, 0.65), 0 4px 12px rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: none !important;
+}
+
+/* Gallery frame */
+:root.light #gallery > div:last-child {
+    background: var(--bg-card) !important;
+    border-color: transparent !important;
+    box-shadow: var(--neo-raised) !important;
 }

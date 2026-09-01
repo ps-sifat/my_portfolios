@@ -18,13 +18,13 @@ import {
 } from "../assets";
 
 export const navLinks = [
-  { id: "about", title: "About" },
+  { id: "hero-section", title: "Home" },
   { id: "experience", title: "Training" },
-  { id: "skills", title: "Skills" },
-  { id: "projects", title: "Projects" },
-  { id: "achievements", title: "Achievements" },
+  { id: "tech", title: "Skills" },
+  { id: "works", title: "Projects" },
+  { id: "achievements", title: "Achievement" },
   { id: "education", title: "Education" },
-  { id: "feedbacks", title: "Testimonials" },
+  { id: "gallery", title: "Gallery" },
   { id: "contact", title: "Contact" },
 ];
 
