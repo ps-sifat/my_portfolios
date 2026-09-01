@@ -155,15 +155,15 @@ const Hero = () => {
               </svg>
             </a>
 
-            {/* Hire Me / Download resume button */}
+            {/* Download CV button */}
             <a
               href={resume}
-              download="Md_Sifatul_Islam_Resume.pdf"
+              download="Md_Sifatul_Islam_CV.pdf"
               id="hero-resume-btn"
               className="flex items-center gap-2 px-6 py-2.5 bg-white/5 hover:bg-[#915eff]/20 border border-[#915eff]/40 hover:border-[#915eff]/70 text-white font-semibold text-[15px] rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(145,94,255,0.3)] cursor-pointer"
-              aria-label="Download Resume"
+              aria-label="Download CV"
             >
-              <span>Hire Me</span>
+              <span>Download CV</span>
               <FaDownload className="text-[#915eff] text-xs" />
             </a>
           </motion.div>
