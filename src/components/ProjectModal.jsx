@@ -36,6 +36,7 @@ const tagIconMap = {
 // Projects data (moved here by user request).
 import etrailglobal from "../assets/etrailglobal.png";
 import { foodpanda, hotelapp, qrcode } from "../assets";
+import valentina from "../assets/Valentina.png";
 
 export const projects = [
   {
@@ -126,6 +127,29 @@ export const projects = [
       "Used the qrcode.react library to render QR codes. For download, implemented a canvas.toDataURL() fallback alongside toBlob() for Safari compatibility. Applied useEffect with debouncing to prevent render thrashing on each keystroke.",
     outcome:
       "A fast, cross-browser QR generator with live preview, color customization, size control, and one-click PNG download. Fully client-side — no backend required. Deployed on Vercel.",
+  },
+  {
+    name: "Valentina PSD to HTML & CSS",
+    description:
+      "My first project converting a PSD design into a responsive website using HTML and CSS. This project helped me build a strong foundation in layout implementation, visual accuracy, and responsive web design.",
+    tags: [
+      { name: "html", color: "orange-text-gradient", percent: 65 },
+      { name: "css", color: "blue-text-gradient", percent: 35 },
+    ],
+    image: valentina,
+    source_code_link:
+      "https://github.com/ps-sifat/valentina_psd_full_responsive_project",
+    live_link:
+      "https://ps-sifat.github.io/valentina_psd_full_responsive_project/",
+    showLiveBadge: false,
+    problem:
+      "The goal was to turn a static PSD design into a working web page while preserving its visual hierarchy and layout across screen sizes.",
+    challenge:
+      "Recreating the PSD spacing, typography, sections, and responsive behavior using only semantic HTML and CSS.",
+    solution:
+      "Built the page from scratch with structured HTML, reusable CSS patterns, and responsive layouts for desktop, tablet, and mobile screens.",
+    outcome:
+      "Completed my first PSD-to-HTML/CSS project and deployed the responsive result on GitHub Pages.",
   },
 ];
 
