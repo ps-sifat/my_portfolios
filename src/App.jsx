@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
 import {
   About,
   Contact,
@@ -14,52 +15,64 @@ import {
   Gallery,
 } from "./components";
 
+// Background star field: loaded after the main UI so three.js never blocks first paint.
+const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
+
+// Loader fades out at LOADER_FADE_MS and is removed once the fade has finished.
+const LOADER_FADE_MS = 800;
+const LOADER_REMOVE_MS = LOADER_FADE_MS + 300;
+
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [loaderState, setLoaderState] = useState("visible");
 
   useEffect(() => {
-    // Optimized loader timing: 1s for smooth transition
-    const timer = window.setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => window.clearTimeout(timer);
+    const fade = window.setTimeout(() => setLoaderState("fading"), LOADER_FADE_MS);
+    const remove = window.setTimeout(() => setLoaderState("gone"), LOADER_REMOVE_MS);
+    return () => {
+      window.clearTimeout(fade);
+      window.clearTimeout(remove);
+    };
   }, []);
 
   return (
-    <>
-      {isLoading && <Loader />}
+    <MotionConfig reducedMotion="user">
+      {loaderState !== "gone" && <Loader fading={loaderState === "fading"} />}
       <div className="relative z-0 bg-primary">
-        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-          <Navbar />
-          <Hero />
-        </div>
-        <SectionWrapper id="about">
-          <About />
-        </SectionWrapper>
-        <SectionWrapper id="experience">
-          <Experience />
-        </SectionWrapper>
-        <SectionWrapper id="tech">
-          <Tech />
-        </SectionWrapper>
-        <SectionWrapper id="works">
-          <Works />
-        </SectionWrapper>
-        <SectionWrapper id="achievements">
-          <Hackathons />
-        </SectionWrapper>
-        <SectionWrapper id="education">
-          <Education />
-        </SectionWrapper>
-        <SectionWrapper id="gallery">
-          <Gallery />
-        </SectionWrapper>
-        <SectionWrapper id="contact" showStars={true}>
-          <Contact />
-        </SectionWrapper>
+        <Suspense fallback={null}>
+          <StarsCanvas />
+        </Suspense>
+        <Navbar />
+        <main id="main">
+          <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+            <Hero />
+          </div>
+          <SectionWrapper>
+            <About />
+          </SectionWrapper>
+          <SectionWrapper>
+            <Experience />
+          </SectionWrapper>
+          <SectionWrapper>
+            <Tech />
+          </SectionWrapper>
+          <SectionWrapper>
+            <Works />
+          </SectionWrapper>
+          <SectionWrapper>
+            <Hackathons />
+          </SectionWrapper>
+          <SectionWrapper>
+            <Education />
+          </SectionWrapper>
+          <SectionWrapper>
+            <Gallery />
+          </SectionWrapper>
+          <SectionWrapper>
+            <Contact />
+          </SectionWrapper>
+        </main>
       </div>
-    </>
+    </MotionConfig>
   );
 };
 

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { styles } from "../style";
 import { useTheme } from "../context/ThemeContext";
 import SphereGallery3D from "./SphereGallery3D";
-import darkAboutPhoto from "../assets/about/dark-mode-about-photo.png";
-import lightAboutPhoto from "../assets/about/white-mood-about-photo.png";
+import { useInView } from "../hooks/useInView";
+import { usePrefersReducedMotion } from "../hooks/useMediaQuery";
+import darkAboutPhoto from "../assets/about/dark-mode-about-photo.webp";
+import lightAboutPhoto from "../assets/about/white-mood-about-photo.webp";
 
 // Put your photos in src/assets/gallery. Vite loads supported image files here
 // automatically, so no new import is needed when you add another photo.
@@ -17,7 +19,6 @@ const galleryFolderImages = Object.entries(
   .sort(([first], [second]) => first.localeCompare(second))
   .map(([, image]) => image);
 
-// Keep the section populated until you add your own photos to the folder.
 const galleryImages = galleryFolderImages.length
   ? galleryFolderImages
   : [lightAboutPhoto, darkAboutPhoto];
@@ -29,6 +30,10 @@ const galleryItems = galleryImages.map((image) => ({
 
 const Gallery = () => {
   const { isDark } = useTheme();
+  const frameRef = useRef(null);
+  // Photos and the WebGL context are only created once the gallery is near.
+  const shouldMount = useInView(frameRef, { once: true, rootMargin: "400px" });
+  const reducedMotion = usePrefersReducedMotion();
 
   const coreColor = isDark ? "#915effcc" : "#7c3aedcc";
   const lineColor = isDark ? "#915eff66" : "#7c3aed66";
@@ -40,7 +45,13 @@ const Gallery = () => {
     >
       <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,65fr)_minmax(0,35fr)]">
         <div className="order-1 min-w-0">
-          <div className="gallery-canvas-frame h-[420px] w-full overflow-hidden rounded-3xl border border-[var(--border-color)] bg-[var(--bg-card)] shadow-[var(--glass-shadow)] sm:h-[540px]">
+          <div
+            ref={frameRef}
+            role="img"
+            aria-label={`Interactive 3D sphere of ${galleryItems.length} photos`}
+            className="gallery-canvas-frame h-[420px] w-full overflow-hidden rounded-3xl border border-[var(--border-color)] bg-[var(--bg-card)] shadow-[var(--glass-shadow)] sm:h-[540px]"
+          >
+            {shouldMount && (
             <SphereGallery3D
               images={galleryItems}
               branches={galleryItems.length}
@@ -48,7 +59,7 @@ const Gallery = () => {
               scale={58}
               size={80}
               scatter={5}
-              speed={18}
+              speed={reducedMotion ? 0 : 18}
               hover={180}
               rounded={22}
               core={{
@@ -59,6 +70,7 @@ const Gallery = () => {
               className="h-full w-full"
               style={{ minWidth: 0, minHeight: 0 }}
             />
+            )}
           </div>
         </div>
 
@@ -69,7 +81,7 @@ const Gallery = () => {
           </h2>
           <p className="mt-4 text-secondary text-[16px] leading-relaxed">
             A small collection of my work, learning journey, and favorite
-            moments. Drag the sphere to explore it.
+            moments. Drag to rotate, scroll to zoom.
           </p>
           <div className="mt-6 inline-flex items-center rounded-full bg-[var(--bg-card)] px-4 py-2 text-[13px] font-semibold text-[var(--accent)] shadow-[var(--neo-raised-small)]">
             {galleryItems.length} photos in this collection

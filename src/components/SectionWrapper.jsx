@@ -1,13 +1,20 @@
 import React from "react";
-import { StarsCanvas } from "./canvas";
+import { motion } from "framer-motion";
 
-const SectionWrapper = ({ children, id, showStars = true }) => {
-  return (
-    <section id={id} className="relative z-0">
-      {showStars && <StarsCanvas />}
-      <div className="relative z-10">{children}</div>
-    </section>
-  );
-};
+/**
+ * Wraps a section so its children's `variants` (hidden → show) play once
+ * when the section scrolls into view. The section component itself owns the
+ * `<section id>` used by the navbar anchors.
+ */
+const SectionWrapper = ({ children }) => (
+  <motion.div
+    className="relative z-0"
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true, amount: 0.1 }}
+  >
+    {children}
+  </motion.div>
+);
 
 export default SectionWrapper;

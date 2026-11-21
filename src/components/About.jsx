@@ -5,13 +5,12 @@ import Tilt from "react-parallax-tilt";
 import { services } from "../constants/index";
 import { styles } from "../style";
 import { useTheme } from "../context/ThemeContext";
-import darkAboutPhoto from "../assets/about/dark-mode-about-photo.png";
-import lightAboutPhoto from "../assets/about/white-mood-about-photo.png";
+import darkAboutPhoto from "../assets/about/dark-mode-about-photo.webp";
+import lightAboutPhoto from "../assets/about/white-mood-about-photo.webp";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import ElectricBorder from "./ElectricBorder";
 
 const ServiceCard = ({ index, title, icon }) => {
-  // Cycle through coordinate colors to make cards stand out individually
   const borderColors = ["#915eff", "#00cea8", "#ff007f", "#38ef7d"];
   const color = borderColors[index % borderColors.length];
 
@@ -29,7 +28,7 @@ const ServiceCard = ({ index, title, icon }) => {
           className="w-full"
         >
           <div className="glass-card rounded-[20px] py-5 px-10 min-h-[280px] flex justify-evenly items-center flex-col hover:shadow-[0_0_20px_rgba(145,94,255,0.15)] transition-all duration-300 select-none">
-            <img src={icon} alt={title} className="w-16 h-16 object-contain" />
+            <img src={icon} alt="" aria-hidden="true" className="w-16 h-16 object-contain" />
             <h3 className="text-[var(--text-primary)] text-[20px] font-bold text-center leading-snug">
               {title}
             </h3>
@@ -55,7 +54,6 @@ const About = () => {
             <h2 className={styles.sectionHeadText}>About Me.</h2>
           </motion.div>
 
-          {/* Bio paragraph */}
           <motion.p
             variants={fadeIn("", "", 0.1, 1)}
             className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
@@ -97,7 +95,6 @@ const About = () => {
             developer opportunities to contribute and grow.
           </motion.p>
 
-          {/* Quick contact line */}
           <motion.div
             variants={fadeIn("", "", 0.3, 1)}
             className="mt-6 flex flex-wrap gap-5"
@@ -135,13 +132,15 @@ const About = () => {
             <img
               src={isDark ? darkAboutPhoto : lightAboutPhoto}
               alt="Md. Sifatul Islam surrounded by software development visuals"
+              width="960"
+              height="960"
+              decoding="async"
               className="h-auto w-full object-contain"
             />
           </div>
         </motion.div>
       </div>
 
-      {/* Service Cards */}
       <div className="mt-20 w-full">
         <div className="w-full flex flex-wrap gap-[45px] justify-center">
           {services.map((service, index) => (

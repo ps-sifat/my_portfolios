@@ -1,8 +1,9 @@
 import React, { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Preload } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import CanvesLoader from "../CanvesLoader";
 import { useTheme } from "../../context/ThemeContext";
+import { usePrefersReducedMotion } from "../../hooks/useMediaQuery";
 
 const TechGlobe = () => {
   const globeRef = useRef(null);
@@ -26,24 +27,22 @@ const TechGlobe = () => {
 
   return (
     <group>
-      {/* Ambient & Spotlight for depth */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 3, 5]} intensity={2.5} color={gridColor} />
       <directionalLight position={[-5, -3, -5]} intensity={1.5} color={ringColor} />
       <pointLight position={[0, 0, 0]} intensity={2} color={particleColor} />
 
-      {/* Main Core Sphere */}
       <mesh ref={globeRef} scale={2.5}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshStandardMaterial
           color={globeColor}
-          roughness={0.2}
-          metalness={0.9}
-          bumpScale={0.05}
+          // Without an env map a very metallic surface renders almost black,
+          // so the light theme uses a softer, more diffuse material.
+          roughness={isDark ? 0.2 : 0.55}
+          metalness={isDark ? 0.9 : 0.25}
         />
       </mesh>
 
-      {/* Digital Wireframe Grid */}
       <mesh ref={gridRef} scale={2.52}>
         <sphereGeometry args={[1.005, 32, 32]} />
         <meshBasicMaterial
@@ -54,13 +53,11 @@ const TechGlobe = () => {
         />
       </mesh>
 
-      {/* Cyber Orbit Ring */}
       <mesh ref={ringRef} rotation={[Math.PI / 3, 0, 0]} scale={3.3}>
         <torusGeometry args={[1, 0.015, 16, 100]} />
         <meshBasicMaterial color={ringColor} transparent opacity={0.6} />
       </mesh>
 
-      {/* Node particles orbiting the globe */}
       <points>
         <sphereGeometry args={[2.9, 16, 16]} />
         <pointsMaterial
@@ -75,13 +72,15 @@ const TechGlobe = () => {
   );
 };
 
-const EarthCanvas = () => {
+// `active` is false while the globe is off screen, which pauses rendering.
+const EarthCanvas = ({ active = true }) => {
+  const reducedMotion = usePrefersReducedMotion();
+  const animate = active && !reducedMotion;
+
   return (
     <Canvas
-      shadows
-      frameloop="always"
+      frameloop={animate ? "always" : "demand"}
       dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
       camera={{
         fov: 45,
         near: 0.1,
@@ -91,14 +90,13 @@ const EarthCanvas = () => {
     >
       <Suspense fallback={<CanvesLoader />}>
         <OrbitControls
-          autoRotate
+          autoRotate={animate}
           autoRotateSpeed={0.5}
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
         <TechGlobe />
-        <Preload all />
       </Suspense>
     </Canvas>
   );

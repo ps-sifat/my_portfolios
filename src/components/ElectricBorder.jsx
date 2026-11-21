@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import './ElectricBorder.css';
+import { useInView } from '../hooks/useInView';
+import { usePrefersReducedMotion } from '../hooks/useMediaQuery';
 
 const ElectricBorder = ({
   children,
@@ -15,8 +17,11 @@ const ElectricBorder = ({
   const animationRef = useRef(null);
   const timeRef = useRef(0);
   const lastFrameTimeRef = useRef(0);
+  // Only animate while on screen and when the visitor allows motion.
+  const inView = useInView(containerRef, { rootMargin: '100px' });
+  const reducedMotion = usePrefersReducedMotion();
+  const active = inView && !reducedMotion;
 
-  // Noise functions
   const random = useCallback(x => {
     return (Math.sin(x * 12.9898) * 43758.5453) % 1;
   }, []);
@@ -80,56 +85,48 @@ const ElectricBorder = ({
 
       let accumulated = 0;
 
-      // Top edge
       if (distance <= accumulated + straightWidth) {
         const progress = (distance - accumulated) / straightWidth;
         return { x: left + radius + progress * straightWidth, y: top };
       }
       accumulated += straightWidth;
 
-      // Top-right corner
       if (distance <= accumulated + cornerArc) {
         const progress = (distance - accumulated) / cornerArc;
         return getCornerPoint(left + width - radius, top + radius, radius, -Math.PI / 2, Math.PI / 2, progress);
       }
       accumulated += cornerArc;
 
-      // Right edge
       if (distance <= accumulated + straightHeight) {
         const progress = (distance - accumulated) / straightHeight;
         return { x: left + width, y: top + radius + progress * straightHeight };
       }
       accumulated += straightHeight;
 
-      // Bottom-right corner
       if (distance <= accumulated + cornerArc) {
         const progress = (distance - accumulated) / cornerArc;
         return getCornerPoint(left + width - radius, top + height - radius, radius, 0, Math.PI / 2, progress);
       }
       accumulated += cornerArc;
 
-      // Bottom edge
       if (distance <= accumulated + straightWidth) {
         const progress = (distance - accumulated) / straightWidth;
         return { x: left + width - radius - progress * straightWidth, y: top + height };
       }
       accumulated += straightWidth;
 
-      // Bottom-left corner
       if (distance <= accumulated + cornerArc) {
         const progress = (distance - accumulated) / cornerArc;
         return getCornerPoint(left + radius, top + height - radius, radius, Math.PI / 2, Math.PI / 2, progress);
       }
       accumulated += cornerArc;
 
-      // Left edge
       if (distance <= accumulated + straightHeight) {
         const progress = (distance - accumulated) / straightHeight;
         return { x: left, y: top + height - radius - progress * straightHeight };
       }
       accumulated += straightHeight;
 
-      // Top-left corner
       const progress = (distance - accumulated) / cornerArc;
       return getCornerPoint(left + radius, top + radius, radius, Math.PI, Math.PI / 2, progress);
     },
@@ -144,7 +141,6 @@ const ElectricBorder = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Configuration
     const octaves = 10;
     const lacunarity = 1.6;
     const gain = 0.7;
@@ -159,7 +155,6 @@ const ElectricBorder = ({
       const width = rect.width + borderOffset * 2;
       const height = rect.height + borderOffset * 2;
 
-      // Use device pixel ratio for sharp rendering
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
@@ -252,10 +247,11 @@ const ElectricBorder = ({
       ctx.closePath();
       ctx.stroke();
 
-      animationRef.current = requestAnimationFrame(drawElectricBorder);
+      if (active) {
+        animationRef.current = requestAnimationFrame(drawElectricBorder);
+      }
     };
 
-    // Handle resize
     const resizeObserver = new ResizeObserver(() => {
       const newSize = updateSize();
       width = newSize.width;
@@ -263,7 +259,6 @@ const ElectricBorder = ({
     });
     resizeObserver.observe(container);
 
-    // Start animation
     animationRef.current = requestAnimationFrame(drawElectricBorder);
 
     return () => {
@@ -272,7 +267,7 @@ const ElectricBorder = ({
       }
       resizeObserver.disconnect();
     };
-  }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);
+  }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint, active]);
 
   const vars = {
     '--electric-border-color': color,

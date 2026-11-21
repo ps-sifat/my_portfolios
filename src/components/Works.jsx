@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useCallback, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -18,11 +18,10 @@ import {
   SiHtml5,
 } from "react-icons/si";
 import { styles } from "../style";
-import { projects } from "./ProjectModal";
+import { projects } from "../constants/projects";
 import { fadeIn, textVariant } from "../utils/motion";
 import ProjectModal from "./ProjectModal";
 
-// Map tag names to React Icons
 const tagIconMap = {
   react: { icon: SiReact, color: "text-blue-400" },
   mongodb: { icon: SiMongodb, color: "text-green-500" },
@@ -51,7 +50,7 @@ const ProjectCard = ({
 
   const handleMouseMove = (e) => {
     const card = cardRef.current;
-    if (!card) return;
+    if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -78,28 +77,27 @@ const ProjectCard = ({
         style={{ transformStyle: "preserve-3d" }}
         className="w-full max-w-[370px] glass-card p-5 rounded-2xl hover:border-purple-500/20 hover:shadow-purple-500/10 transition-all duration-100 ease-out select-none flex flex-col justify-between"
       >
-        {/* Project Thumbnail with Badges */}
         <div className="relative w-full h-[230px] rounded-xl overflow-hidden group/img">
           <img
             src={image}
-            alt={name}
+            alt={`${name} screenshot`}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500 ease-out"
           />
 
-          {/* Green Pulse LIVE Badge */}
           {showLiveBadge && (
             <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-green-500/30">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-[10px] font-bold text-green-400 uppercase tracking-widest">
+              <span className="text-[10px] font-bold text-green-700 dark:text-green-400 uppercase tracking-widest">
                 LIVE
               </span>
             </div>
           )}
 
-          {/* Deployed Label */}
           {live_link && (
             <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-blue-500/30">
               <FaCheckCircle className="text-blue-400 text-[10px]" />
@@ -110,7 +108,6 @@ const ProjectCard = ({
           )}
         </div>
 
-        {/* Project Details */}
         <div className="mt-5" style={{ transform: "translateZ(30px)" }}>
           <h3 className="text-[var(--text-primary)] font-bold text-[24px] tracking-wide">
             {name}
@@ -120,9 +117,7 @@ const ProjectCard = ({
           </p>
         </div>
 
-        {/* Tech Stack and Buttons container */}
         <div className="mt-6" style={{ transform: "translateZ(40px)" }}>
-          {/* Tech Stack Icons & Percentage Bar */}
           <div className="mb-5 border-t border-white/5 pt-4">
             <div className="flex justify-between items-center mb-3">
               <div className="flex gap-2">
@@ -148,7 +143,6 @@ const ProjectCard = ({
               </span>
             </div>
 
-            {/* GitHub-style stacked percentage bar */}
             <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden flex gap-[2px] mb-3">
               {tags.map((tag) => {
                 let bgGradient = "bg-gray-400";
@@ -173,7 +167,6 @@ const ProjectCard = ({
               })}
             </div>
 
-            {/* Labels and values */}
             <div className="flex flex-wrap gap-x-4 gap-y-1">
               {tags.map((tag) => {
                 let dotColor = "bg-gray-400";
@@ -198,11 +191,11 @@ const ProjectCard = ({
             </div>
           </div>
 
-          {/* Call To Actions */}
           <div className="flex flex-col gap-2">
-            {/* Case Study Button — full width, prominent */}
             <button
+              type="button"
               onClick={() => onCaseStudy(project)}
+              aria-label={`View case study: ${name}`}
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-[14px] text-white transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               style={{
                 background:
@@ -214,7 +207,6 @@ const ProjectCard = ({
               View Case Study
             </button>
 
-            {/* Live + GitHub side by side */}
             <div className="flex gap-2">
               <a
                 href={live_link}
@@ -222,8 +214,8 @@ const ProjectCard = ({
                 rel="noopener noreferrer"
                 className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold py-2 px-4 rounded-xl flex items-center justify-center gap-1.5 text-[13px] transition-colors border border-white/10 hover:border-purple-500/30"
               >
-                <FaExternalLinkAlt className="text-[10px]" />
-                Live
+                <FaExternalLinkAlt className="text-[10px]" aria-hidden="true" />
+                Live<span className="sr-only"> demo of {name}</span>
               </a>
               <a
                 href={source_code_link}
@@ -232,8 +224,8 @@ const ProjectCard = ({
                 className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold py-2 px-4 rounded-xl flex items-center justify-center gap-1.5 text-[13px] transition-all border border-white/10 hover:border-purple-500/30"
                 title="GitHub Repository"
               >
-                <FaGithub className="text-sm" />
-                GitHub
+                <FaGithub className="text-sm" aria-hidden="true" />
+                GitHub<span className="sr-only"> repository of {name}</span>
               </a>
             </div>
           </div>
@@ -245,6 +237,8 @@ const ProjectCard = ({
 
 const Works = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  // Stable reference so the modal's keydown listener is not re-bound every render.
+  const closeModal = useCallback(() => setSelectedProject(null), []);
 
   return (
     <section
@@ -281,13 +275,15 @@ const Works = () => {
         ))}
       </div>
 
-      {/* Case Study Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            key={selectedProject.name}
+            project={selectedProject}
+            onClose={closeModal}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

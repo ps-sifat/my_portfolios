@@ -1286,18 +1286,26 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
             if (!pointer.dragging) pointer.inside = false
         }
 
+        // Wheel zooms the sphere; once zoom hits its limit the event is left
+        // alone so the page keeps scrolling instead of getting stuck.
         const onWheel = (e: WheelEvent) => {
-            e.preventDefault()
             const L = live.current
-            orbit.zoomTarget = clamp(
-                orbit.zoomTarget + e.deltaY * 0.02 * L.zoomGain,
-                L.minZoom,
-                L.maxZoom
+            const lo = Math.min(L.minZoom, L.maxZoom)
+            const hi = Math.max(L.minZoom, L.maxZoom)
+            const next = clamp(
+                orbit.zoomTarget + e.deltaY * 0.06 * L.zoomGain,
+                lo,
+                hi
             )
+            if (next === orbit.zoomTarget) return
+            e.preventDefault()
+            orbit.zoomTarget = next
         }
 
         canvas.style.cursor = "grab"
-        canvas.style.touchAction = "none"
+        // pan-y: vertical swipes still scroll the page on touch devices,
+        // horizontal drags orbit the sphere.
+        canvas.style.touchAction = "pan-y"
         canvas.addEventListener("pointerdown", onPointerDown)
         canvas.addEventListener("pointerleave", onLeave)
         canvas.addEventListener("wheel", onWheel, { passive: false })
@@ -1327,8 +1335,22 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
         let raf = 0
         let prev = performance.now()
 
+        // Skip all work while the gallery is scrolled out of view.
+        let onScreen = true
+        const io = new IntersectionObserver(
+            ([entry]) => {
+                onScreen = entry.isIntersecting
+            },
+            { rootMargin: "100px" }
+        )
+        io.observe(canvas)
+
         const frame = () => {
             raf = requestAnimationFrame(frame)
+            if (!onScreen) {
+                prev = performance.now()
+                return
+            }
 
             const now = performance.now()
             const dt = Math.min(0.05, (now - prev) / 1000)
@@ -1757,6 +1779,7 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
             canvas.removeEventListener("pointerdown", onPointerDown)
             canvas.removeEventListener("pointerleave", onLeave)
             canvas.removeEventListener("wheel", onWheel)
+            io.disconnect()
             window.removeEventListener("pointermove", onPointerMove)
             window.removeEventListener("pointerup", release)
             window.removeEventListener("pointercancel", release)

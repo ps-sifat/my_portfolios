@@ -38,25 +38,6 @@ export const fadeIn = (direction, type, delay, duration) => {
   };
 };
 
-export const zoomIn = (delay, duration) => {
-  return {
-    hidden: {
-      scale: 0,
-      opacity: 0,
-    },
-    show: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "tween",
-        delay: delay,
-        duration: duration || 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-};
-
 export const slideIn = (direction, type, delay, duration) => {
   return {
     hidden: {
@@ -71,18 +52,6 @@ export const slideIn = (direction, type, delay, duration) => {
         delay: delay,
         duration: duration || 0.6,
         ease: "easeOut",
-      },
-    },
-  };
-};
-
-export const staggerContainer = (staggerChildren, delayChildren) => {
-  return {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: staggerChildren,
-        delayChildren: delayChildren || 0,
       },
     },
   };

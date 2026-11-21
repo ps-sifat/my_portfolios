@@ -1,15 +1,19 @@
 import React, { useState, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial, Preload } from "@react-three/drei";
+import { Points, PointMaterial } from "@react-three/drei";
 import { useTheme } from "../../context/ThemeContext";
+import { usePrefersReducedMotion } from "../../hooks/useMediaQuery";
 
-const Stars = (props) => {
+const STAR_COUNT = 5000;
+
+const Stars = ({ animate }) => {
   const ref = useRef();
   const { isDark } = useTheme();
-  
+
+  // Generated once; never re-created inside the render loop.
   const [sphere] = useState(() => {
-    const arr = new Float32Array(5000 * 3);
-    for (let i = 0; i < 5000; i++) {
+    const arr = new Float32Array(STAR_COUNT * 3);
+    for (let i = 0; i < STAR_COUNT; i++) {
       const u = Math.random();
       const v = Math.random();
       const theta = u * 2.0 * Math.PI;
@@ -22,21 +26,20 @@ const Stars = (props) => {
     return arr;
   });
 
-  useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
-    }
+  useFrame((_, delta) => {
+    if (!animate || !ref.current) return;
+    ref.current.rotation.x -= delta / 10;
+    ref.current.rotation.y -= delta / 15;
   });
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled>
         <PointMaterial
           transparent
           color={isDark ? "#f3f3f3" : "#9b8bc4"}
           size={isDark ? 0.002 : 0.0015}
-          sizeAttenuation={true}
+          sizeAttenuation
           depthWrite={false}
         />
       </Points>
@@ -44,14 +47,24 @@ const Stars = (props) => {
   );
 };
 
+// One fixed star field for the whole page (a single WebGL context).
 const StarsCanvas = () => {
+  const reducedMotion = usePrefersReducedMotion();
+
   return (
-    <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1] }}>
+    <div
+      className="fixed inset-0 -z-10 pointer-events-none"
+      aria-hidden="true"
+    >
+      <Canvas
+        dpr={[1, 1.5]}
+        frameloop={reducedMotion ? "demand" : "always"}
+        camera={{ position: [0, 0, 1] }}
+        gl={{ antialias: false, powerPreference: "low-power" }}
+      >
         <Suspense fallback={null}>
-          <Stars />
+          <Stars animate={!reducedMotion} />
         </Suspense>
-        <Preload all />
       </Canvas>
     </div>
   );
