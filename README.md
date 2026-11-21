@@ -21,6 +21,12 @@ npm install
 npm run dev
 ```
 
+### Contact form (EmailJS)
+
+Copy `.env.example` to `.env` and fill in the three `VITE_EMAILJS_*` keys
+(also add them in Vercel → Project → Settings → Environment Variables).
+Without them the form opens the visitor's mail app instead.
+
 Create a production build with:
 
 ```bash

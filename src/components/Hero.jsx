@@ -1,48 +1,36 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, lazy, useRef } from "react";
 import { motion } from "framer-motion";
 import { github } from "../assets";
 import { FaDownload, FaMapMarkerAlt } from "react-icons/fa";
-import resume from "../../resume.pdf";
+import { useInView } from "../hooks/useInView";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
-const ComputersCanvas = lazy(() => import("../components/canvas/Computers"));
+// Served from /public so the file name stays stable for recruiters.
+const RESUME_URL = "/Md_Sifatul_Islam_CV.pdf";
+
+// Only downloaded on desktop, when the hero is near the viewport.
+const ComputersCanvas = lazy(() => import("./canvas/Computers"));
 
 const Hero = () => {
-  const [showCanvas, setShowCanvas] = useState(false);
-
-  useEffect(() => {
-    const section = document.getElementById("hero-section");
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShowCanvas(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useRef(null);
+  const isDesktop = useMediaQuery("(min-width: 48rem)");
+  const nearViewport = useInView(sectionRef, { once: true });
+  const showCanvas = isDesktop && nearViewport;
 
   return (
     <section
       id="hero-section"
+      ref={sectionRef}
       className="site-container relative w-full min-h-screen flex flex-col justify-center items-center pt-[100px] pb-10 md:pb-0"
       aria-label="Hero section"
     >
       <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-5">
-        {/* Left side vertical accent line */}
         <div className="hidden md:flex flex-col justify-center items-center mt-[12px]">
           <div className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-full bg-[#915eff]" />
           <div className="w-1 h-20 sm:h-32 md:h-48 lg:h-64 violet-gradient" />
         </div>
 
-        {/* Left text content */}
         <div className="flex-1 px-4 w-full">
-          {/* Location badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +41,6 @@ const Hero = () => {
             <span>Dhaka, Bangladesh</span>
           </motion.div>
 
-          {/* Name */}
           <motion.h1
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -63,12 +50,15 @@ const Hero = () => {
             Md. Sifatul Islam
           </motion.h1>
 
-          {/* Animated Role Titles */}
           <h2
             className="relative font-bold text-xl sm:text-xl md:text-2xl lg:text-[28px] mt-8 w-full h-[1.8em]"
             style={{ color: "var(--text-primary)" }}
           >
             <span className="text-secondary font-normal">I'm&nbsp;</span>
+            <span className="sr-only">
+              Full Stack Developer, MERN Stack Developer, Frontend Developer
+              and Problem Solver
+            </span>
             <span
               style={{ "--i": 0 }}
               data-text="Full Stack Developer"
@@ -103,7 +93,6 @@ const Hero = () => {
             </span>
           </h2>
 
-          {/* Short bio */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -122,14 +111,12 @@ const Hero = () => {
             love solving real-world problems with clean code.
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-8 flex flex-wrap gap-4 items-center"
           >
-            {/* GitHub button */}
             <a
               href="https://github.com/ps-sifat"
               target="_blank"
@@ -141,7 +128,8 @@ const Hero = () => {
               <img
                 className="arr-2 w-6 h-6 absolute z-3 left-3"
                 src={github}
-                alt="github icon"
+                alt=""
+                aria-hidden="true"
               />
               <span className="text block group-hover:hidden">My Work</span>
               <span className="text hidden group-hover:block">GitHub</span>
@@ -155,9 +143,8 @@ const Hero = () => {
               </svg>
             </a>
 
-            {/* Download CV button */}
             <a
-              href={resume}
+              href={RESUME_URL}
               download="Md_Sifatul_Islam_CV.pdf"
               id="hero-resume-btn"
               className="flex items-center gap-2 px-6 py-2.5 bg-white/5 hover:bg-[#915eff]/20 border border-[#915eff]/40 hover:border-[#915eff]/70 text-white font-semibold text-[15px] rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(145,94,255,0.3)] cursor-pointer"
@@ -169,7 +156,6 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right 3D Model - Hidden on Mobile/Tablet */}
         <div className="hidden md:block flex-2 w-full md:w-[700px] h-[300px] md:h-[500px] lg:h-[600px] relative">
           {showCanvas ? (
             <Suspense fallback={null}>
@@ -179,8 +165,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - hidden on mobile / small devices to avoid visual clutter */}
-      <div className="absolute bottom-5 w-full flex justify-center items-center hidden sm:flex">
+      <div className="absolute bottom-5 w-full hidden sm:flex justify-center items-center">
         <a href="#about" aria-label="Scroll to About section">
           <div className="w-[35px] h-[60px] rounded-3xl border-3 border-secondary flex justify-center items-start p-2">
             <motion.div
