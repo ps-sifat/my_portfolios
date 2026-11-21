@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   VerticalTimeline,
@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { styles } from "../style";
 import { fadeIn, textVariant } from "../utils/motion";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const academicEducation = [
   {
@@ -71,7 +72,7 @@ const EducationCard = ({ edu }) => {
         background: "#915eff",
         boxShadow: "0 0 0 4px #915eff, inset 0 2px 0 rgba(0,0,0,0.06)",
       }}
-      icon={<edu.icon size={20} color="#fff" />}
+      icon={<edu.icon size={20} color="#fff" aria-hidden="true" />}
     >
       <div>
         <h3 className="text-[var(--text-primary)] text-[20px] font-bold leading-tight">
@@ -87,7 +88,7 @@ const EducationCard = ({ edu }) => {
 
       {edu.grade && (
         <div className="mt-3">
-          <span className="inline-flex items-center gap-1.5 text-green-400 text-[13px] font-semibold">
+          <span className="inline-flex items-center gap-1.5 text-green-700 dark:text-green-400 text-[13px] font-semibold">
             <FaAward />
             <span>{edu.grade}</span>
           </span>
@@ -102,14 +103,7 @@ const EducationCard = ({ edu }) => {
 };
 
 const Education = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 640);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+  const isMobile = useMediaQuery("(max-width: 40rem)");
 
   return (
     <section
@@ -129,7 +123,7 @@ const Education = () => {
             variants={isMobile ? undefined : fadeIn("left", "tween", 0.1, 0.5)}
             className="text-white font-bold text-[24px] mb-8 flex items-center gap-3"
           >
-            <FaGraduationCap className="text-blue-500 filter drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+            <FaGraduationCap aria-hidden="true" className="text-blue-500 filter drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
             <span>Academic Education</span>
           </motion.h3>
 

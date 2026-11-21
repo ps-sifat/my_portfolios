@@ -14,16 +14,17 @@ const CanvesLoader = () => {
         flexDirection: "column",
       }}
     >
-      <span className="canvas-loader"></span>
+      <span className="canvas-loader" aria-hidden="true"></span>
       <p
+        role="status"
         style={{
           fontSize: 14,
-          color: "#F1F1F1",
+          color: "var(--text-primary)",
           fontWeight: 800,
           marginTop: 40,
         }}
       >
-        {progress.toFixed(2)}%
+        {progress.toFixed(0)}%
       </p>
     </Html>
   );

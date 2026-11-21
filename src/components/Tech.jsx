@@ -83,7 +83,6 @@ const Tech = () => {
 
       <div className="mt-16 flex flex-col gap-14">
         {skills.map((cat, catIdx) => {
-          // Map skills to nodes inside LogoLoop
           const mappedLogos = cat.items.map((skill) => {
             const Icon = skill.icon;
             return {
@@ -103,7 +102,6 @@ const Tech = () => {
 
           return (
             <div key={cat.category} className="flex flex-col gap-5">
-              {/* Category header */}
               <motion.div
                 variants={fadeIn("right", "tween", 0.1, 0.5)}
                 className="flex items-center gap-3"
@@ -119,7 +117,6 @@ const Tech = () => {
                 )}
               </motion.div>
 
-              {/* Logo Loop Carousel for each category */}
               <motion.div
                 variants={fadeIn("up", "spring", catIdx * 0.1, 0.75)}
                 className="w-full relative"
@@ -131,7 +128,7 @@ const Tech = () => {
                   logoHeight={48}
                   gap={24}
                   fadeOut={true}
-                  fadeOutColor="#050816"
+                  fadeOutColor="var(--bg-primary)"
                   scaleOnHover={true}
                   pauseOnHover={true}
                 />

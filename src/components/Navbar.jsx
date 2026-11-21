@@ -3,18 +3,17 @@ import { close, logo, menu } from "../assets";
 import { navLinks } from "../constants";
 import { useTheme } from "../context/ThemeContext";
 
-const navbarLinks = navLinks.filter((link) => link.id !== "feedbacks");
+const navbarLinks = navLinks;
 
-/* ─── Sun / Moon Toggle Button with Circular Reveal ─── */
-const ThemeToggle = () => {
+const ThemeToggle = ({ id }) => {
   const { isDark, handleThemeClick } = useTheme();
 
   return (
     <button
-      id="theme-toggle-btn"
+      id={id}
       onClick={handleThemeClick}
+      type="button"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      aria-pressed={isDark}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className="relative w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-300 cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)]"
       style={{
@@ -27,9 +26,9 @@ const ThemeToggle = () => {
           : "0 0 12px rgba(255, 200, 50, 0.35)",
       }}
     >
-      {/* Sun icon */}
       <span
         className="absolute inset-0 flex items-center justify-center transition-all duration-500"
+        aria-hidden="true"
         style={{
           opacity: isDark ? 0 : 1,
           transform: isDark
@@ -59,9 +58,9 @@ const ThemeToggle = () => {
         </svg>
       </span>
 
-      {/* Moon icon */}
       <span
         className="absolute inset-0 flex items-center justify-center transition-all duration-500"
+        aria-hidden="true"
         style={{
           opacity: isDark ? 1 : 0,
           transform: isDark
@@ -120,9 +119,18 @@ const Navbar = () => {
     };
   }, []);
 
+  // Close the mobile menu with Escape.
+  useEffect(() => {
+    if (!toggle) return undefined;
+    const onKey = (e) => e.key === "Escape" && setToggle(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [toggle]);
+
   return (
     <>
       <nav
+        aria-label="Main"
         className={`w-full flex items-center justify-center fixed bg-transparent top-0 left-0 z-20 sm:px-16 px-6 transition-all duration-300 ${isScrolled ? "py-2.5 md:py-3 glass-navbar shadow-lg" : "py-4 md:py-5"
           }`}
       >
@@ -130,18 +138,15 @@ const Navbar = () => {
           <a
             href="#hero-section"
             className="flex items-center gap-2"
-            onClick={() => {
-              setActive("");
-              window.scrollTo(0, 0);
-            }}
+            aria-label="Sifat.dev — back to top"
+            onClick={() => setActive("")}
           >
-            <img className="w-6 h-9 object-contain" src={logo} alt="logo" />
+            <img className="w-6 h-9 object-contain" src={logo} alt="" aria-hidden="true" />
             <p className="text-[var(--text-primary)] text-[20px] font-bold font-poppins tracking-wider">
               Sifat.dev
             </p>
           </a>
 
-          {/* Desktop nav links + theme toggle */}
           <div className="hidden sm:flex flex-row gap-2 items-center">
             <ul className="list-none flex flex-row gap-2 items-center">
               {navbarLinks.map((link) => (
@@ -151,35 +156,47 @@ const Navbar = () => {
                     ? "text-white bg-[#915eff]"
                     : "text-secondary hover:text-white"
                     }`}
-                  onClick={() => setActive(link.title)}
                 >
                   <a
                     href={`#${link.id}`}
+                    onClick={() => setActive(link.title)}
+                    aria-current={active === link.title ? "true" : undefined}
                     className="relative z-10 block w-full h-full text-center"
                   >
                     {link.title}
                   </a>
-                  {/* Expanding background circle on hover */}
                   {active !== link.title && (
                     <span className="absolute inset-0 w-0 h-0 m-auto rounded-full bg-[#915eff] group-hover:w-32 group-hover:h-32 transition-all duration-500 ease-out z-0 opacity-0 group-hover:opacity-100" />
                   )}
                 </li>
               ))}
             </ul>
-            {/* Theme Toggle */}
-            <ThemeToggle />
+            <ThemeToggle id="theme-toggle-btn" />
           </div>
 
-          {/* Mobile: hamburger + theme toggle */}
           <div className="sm:hidden flex flex-1 justify-end items-center gap-3">
-            <ThemeToggle />
-            <img
-              src={toggle ? close : menu}
-              alt="menu"
-              className="w-[28px] h-[28px] object-contain cursor-pointer"
-              onClick={() => setToggle(!toggle)}
-            />
+            <ThemeToggle id="theme-toggle-btn-mobile" />
+            <button
+              type="button"
+              onClick={() => setToggle((isOpen) => !isOpen)}
+              aria-label={toggle ? "Close menu" : "Open menu"}
+              aria-expanded={toggle}
+              aria-controls="mobile-menu"
+              className="w-10 h-10 flex items-center justify-center rounded-lg cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+            >
+              <img
+                src={toggle ? close : menu}
+                alt=""
+                aria-hidden="true"
+                className="w-[28px] h-[28px] object-contain menu-icon"
+              />
+            </button>
             <div
+              id="mobile-menu"
+              style={{
+                // near-opaque so page text does not show through the links
+                background: "color-mix(in srgb, var(--bg-primary) 94%, transparent)",
+              }}
               className={`p-6 glass-card backdrop-blur-xl absolute top-16 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl border border-[var(--border-subtle)] ${!toggle
                 ? "hidden"
                 : "flex justify-center py-4 items-center animate-fade-in"
@@ -193,18 +210,18 @@ const Navbar = () => {
                       ? "text-white bg-[#915eff]"
                       : "text-secondary hover:text-white"
                       }`}
-                    onClick={() => {
-                      setToggle((isOpen) => !isOpen);
-                      setActive(link.title);
-                    }}
                   >
                     <a
                       href={`#${link.id}`}
+                      onClick={() => {
+                        setToggle(false);
+                        setActive(link.title);
+                      }}
+                      aria-current={active === link.title ? "true" : undefined}
                       className="relative z-10 block w-full h-full text-center"
                     >
                       {link.title}
                     </a>
-                    {/* Expanding background circle on hover */}
                     {active !== link.title && (
                       <span className="absolute inset-0 w-0 h-0 m-auto rounded-full bg-[#915eff] group-hover:w-48 group-hover:h-48 transition-all duration-500 ease-out z-0 opacity-0 group-hover:opacity-100" />
                     )}

@@ -130,7 +130,7 @@ const HackathonCard = ({
         <h3 className="text-[var(--text-primary)] font-bold text-[20px] tracking-wide mb-1">
           {event}
         </h3>
-        <p className="text-purple-400 font-semibold text-[14px] mb-3">
+        <p className="text-purple-700 dark:text-purple-400 font-semibold text-[14px] mb-3">
           Role: {role}
         </p>
 
@@ -155,7 +155,7 @@ const HackathonCard = ({
         {tags.map((tag, idx) => (
           <span
             key={idx}
-            className="text-[11px] font-medium bg-purple-500/10 border border-purple-500/20 text-purple-300 px-2.5 py-1 rounded-md"
+            className="text-[11px] font-medium bg-purple-500/10 border border-purple-500/20 text-purple-700 dark:text-purple-300 px-2.5 py-1 rounded-md"
           >
             {tag}
           </span>
@@ -194,7 +194,6 @@ const AchievementItem = ({
           {description}
         </p>
 
-        {/* Credential Link */}
         {credentialUrl ? (
           <a
             href={credentialUrl}
@@ -245,7 +244,6 @@ const Hackathons = () => {
       </motion.div>
 
       <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Hackathons & Challenges Column */}
         <div className="flex flex-col gap-6">
           <motion.h3
             variants={fadeIn("right", "tween", 0.1, 0.5)}
@@ -262,7 +260,6 @@ const Hackathons = () => {
           </div>
         </div>
 
-        {/* Key Achievements Column */}
         <div className="flex flex-col gap-6">
           <motion.h3
             variants={fadeIn("left", "tween", 0.1, 0.5)}
