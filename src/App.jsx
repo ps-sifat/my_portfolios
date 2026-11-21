@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   About,
   Contact,
@@ -28,7 +27,7 @@ const App = () => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <>
       {isLoading && <Loader />}
       <div className="relative z-0 bg-primary">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
@@ -60,7 +59,7 @@ const App = () => {
           <Contact />
         </SectionWrapper>
       </div>
-    </BrowserRouter>
+    </>
   );
 };
 

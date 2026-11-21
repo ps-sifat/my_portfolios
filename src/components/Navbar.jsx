@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { close, logo, menu } from "../assets";
 import { navLinks } from "../constants";
 import { useTheme } from "../context/ThemeContext";
@@ -88,7 +87,6 @@ const ThemeToggle = () => {
 };
 
 const Navbar = () => {
-  const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -98,7 +96,7 @@ const Navbar = () => {
 
     const updateScrolledState = () => {
       frameId = null;
-      const nextIsScrolled = pathname === "/" ? window.scrollY > 10 : true;
+      const nextIsScrolled = window.scrollY > 10;
 
       setIsScrolled((currentIsScrolled) =>
         currentIsScrolled === nextIsScrolled
@@ -120,7 +118,7 @@ const Navbar = () => {
       if (frameId !== null) window.cancelAnimationFrame(frameId);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname]);
+  }, []);
 
   return (
     <>
@@ -129,8 +127,8 @@ const Navbar = () => {
           }`}
       >
         <div className="w-full flex justify-between items-center site-container !py-4">
-          <Link
-            to="/"
+          <a
+            href="#hero-section"
             className="flex items-center gap-2"
             onClick={() => {
               setActive("");
@@ -141,7 +139,7 @@ const Navbar = () => {
             <p className="text-[var(--text-primary)] text-[20px] font-bold font-poppins tracking-wider">
               Sifat.dev
             </p>
-          </Link>
+          </a>
 
           {/* Desktop nav links + theme toggle */}
           <div className="hidden sm:flex flex-row gap-2 items-center">

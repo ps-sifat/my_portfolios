@@ -1,20 +1,12 @@
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-    plugins: [tailwindcss()],
-    autoprefixer: {},
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    react: ["react", "react-dom", "react-router-dom"],
-                    three: ["three", "@react-three/fiber", "@react-three/drei"],
-                    motion: ["framer-motion", "motion"],
-                    icons: ["react-icons", "@react-icons/all-files"],
-                    ui: ["react-parallax-tilt", "react-vertical-timeline-component"],
-                },
-            },
-        },
-    },
+  plugins: [react(), tailwindcss()],
+  build: {
+    // three.js is only reached through lazy chunks (stars, globe, desk), so it
+    // never blocks first paint; its size alone is expected.
+    chunkSizeWarningLimit: 1200,
+  },
 });
